@@ -118,7 +118,7 @@ const ProfileButtonBox = styled.div`
   gap: 1.125rem;
 `;
 
-const ImageUploadButton = styled.button<{ isDarkMode: boolean }>`
+const ImageUploadButton = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
