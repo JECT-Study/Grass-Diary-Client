@@ -12,12 +12,7 @@ const SettingContainer = styled.main`
   min-width: 20rem;
   gap: 1.5rem;
 
-  background: linear-gradient(
-      180deg,
-      rgba(255, 255, 255, 0.3) 0%,
-      rgba(241, 241, 241, 0.3) 100%
-    ),
-    ${semantic.light.bg.solid.subtler};
+  background: ${({ theme }) => theme.bg.solid.subtler};
 `;
 
 const ContentContainer = styled.div`
@@ -110,7 +105,7 @@ const UserNameText = styled.span`
   text-align: center;
 
   ${TYPO.title2}
-  color: ${semantic.light.object.solid.normal};
+  color: ${({ theme }) => theme.object.solid.normal};
 `;
 
 const ProfileButtonBox = styled.div`
@@ -123,7 +118,7 @@ const ProfileButtonBox = styled.div`
   gap: 1.125rem;
 `;
 
-const ImageUploadButton = styled.button`
+const ImageUploadButton = styled.button<{ isDarkMode: boolean }>`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -136,13 +131,13 @@ const ImageUploadButton = styled.button`
 
   border-radius: 0.5rem;
 
-  color: ${semantic.light.base.solid.white};
-  background: ${semantic.light.accent.solid.normal};
+  background: ${({ theme }) => theme.accent.solid.normal};
+  color: ${({ theme }) => theme.base.solid.white};
 
-  ${INTERACTION.default.normal(semantic.light.accent.solid.normal)}
+  ${INTERACTION.default.normal(semantic.light.accent.solid.normal)};
 `;
 
-const ImageDeleteButton = styled.button`
+const ImageDeleteButton = styled.button<{ isDarkMode: boolean }>`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -155,8 +150,9 @@ const ImageDeleteButton = styled.button`
 
   border-radius: 0.5rem;
 
-  color: ${semantic.light.base.solid.white};
-  background: ${semantic.light.object.solid.normal};
+  background: ${({ theme }) => theme.object.solid.normal};
+  color: ${({ theme, isDarkMode }) =>
+    isDarkMode ? theme.base.solid.black : theme.base.solid.white};
 
   ${INTERACTION.default.normal(semantic.light.object.solid.normal)}
 `;
@@ -206,7 +202,7 @@ const UserIntroductionBox = styled.div<{ isFocused: boolean }>`
   box-shadow:
     0px 0px 1px 0px rgba(0, 0, 0, 0.04),
     0px 2px 4px 0px rgba(0, 0, 0, 0.08);
-  background: ${semantic.light.bg.solid.normal};
+  background: ${({ theme }) => theme.bg.solid.normal};
 `;
 
 const UserIntroduction = styled.textarea`
@@ -219,10 +215,12 @@ const UserIntroduction = styled.textarea`
   resize: none;
   outline: none;
 
-  ${TYPO.caption2}
   overflow: hidden;
   text-overflow: ellipsis;
+
+  ${TYPO.caption2}
   color: ${semantic.light.object.transparent.neutral};
+  background: ${({ theme }) => theme.bg.solid.normal};
 `;
 
 const IntroductionCountText = styled.span`
@@ -317,12 +315,12 @@ const SettingLabel = styled.label`
   width: 7rem;
 
   ${TYPO.title1}
-  color: ${semantic.light.object.solid.normal};
+  color: ${({ theme }) => theme.object.solid.normal};
 `;
 
 const SettingText = styled.span`
   ${TYPO.label2}
-  color: ${semantic.light.object.solid.normal};
+  color: ${({ theme }) => theme.object.solid.normal};
 `;
 
 const AmendButton = styled.button`
@@ -343,7 +341,7 @@ const NicknameInput = styled.input`
 
   border-radius: 0.5rem;
   border: 1px solid ${semantic.light.border.transparent.alternative};
-  background: #fff;
+  background: ${({ theme }) => theme.bg.solid.normal};
 
   &:focus {
     border: 1px solid ${semantic.light.accent.solid.alternative};
@@ -383,7 +381,7 @@ const SettingMessage = styled.span`
   align-self: stretch;
 
   ${TYPO.caption1};
-  color: ${semantic.light.object.transparent.neutral};
+  color: ${({ theme }) => theme.object.transparent.neutral};
 `;
 
 const DividerLine = styled.div`
