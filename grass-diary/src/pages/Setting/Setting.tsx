@@ -66,7 +66,7 @@ const Setting = () => {
                       <S.UserNameText>{nickname}</S.UserNameText>
                     </S.AvatarImageBox>
                     <S.ProfileButtonBox>
-                      <S.ImageUploadButton isDarkMode={isDarkMode}>
+                      <S.ImageUploadButton>
                         {SETTING_MESSAGES.button.image('업로드')}
                       </S.ImageUploadButton>
                       <S.ImageDeleteButton isDarkMode={isDarkMode}>

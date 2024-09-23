@@ -471,14 +471,6 @@ export const PaginationIconButton = styled.button`
   ${INTERACTION.default.normal()}
 `;
 
-export const PaginationImg = styled.div<{ $imageURL: string }>`
-  width: 1rem;
-  height: 1rem;
-
-  background-size: cover;
-  background: url(${props => props.$imageURL}) no-repeat center center;
-`;
-
 /* 사이드 해시태그 목록 컴포넌트 */
 
 export const HashtagAside = styled.aside`
