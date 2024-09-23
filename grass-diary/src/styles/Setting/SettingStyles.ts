@@ -1,5 +1,8 @@
 import styled, { css } from 'styled-components';
 
+import { ReactComponent as DarkTheme } from '@svg/darkTheme.svg';
+import { ReactComponent as LightTheme } from '@svg/lightTheme.svg';
+
 import { semantic } from '@styles/semantic';
 import { TYPO } from '@styles/typo';
 import { INTERACTION } from '@styles/interaction';
@@ -451,11 +454,72 @@ const ThemeSelectBox = styled.div`
   gap: 2.5rem 3rem;
 `;
 
-const ThemeImg = styled.img`
-  width: 6.5625rem;
-  height: 6.5625rem;
+const DarkThemeBox = styled.div<{ isDarkMode: boolean }>`
+  position: relative;
+
+  width: 7.125rem;
+  height: 7.125rem;
+
+  &::after {
+    content: '';
+    position: absolute;
+
+    top: 0.3rem;
+    right: -0.7rem;
+
+    width: 3rem;
+    height: 3rem;
+
+    pointer-events: none;
+
+    background-image: url('../../../public/assets/icons/checkTheme.svg');
+    background-repeat: no-repeat;
+
+    opacity: ${({ isDarkMode }) => (isDarkMode ? 1 : 0)};
+  }
+`;
+
+const LightThemeBox = styled.div<{ isDarkMode: boolean }>`
+  position: relative;
+
+  width: 7.125rem;
+  height: 7.125rem;
+
+  &::after {
+    content: '';
+    position: absolute;
+
+    top: 0.3rem;
+    right: -0.7rem;
+
+    width: 3rem;
+    height: 3rem;
+
+    pointer-events: none;
+
+    background-image: url('../../../public/assets/icons/checkTheme.svg');
+    background-repeat: no-repeat;
+
+    opacity: ${({ isDarkMode }) => (isDarkMode ? 0 : 1)};
+  }
+`;
+
+const DarkThemeImg = styled(DarkTheme)<{ isDarkMode: boolean }>`
+  width: 7.125rem;
+  height: 7.125rem;
 
   cursor: pointer;
+
+  stroke: ${({ isDarkMode }) => (isDarkMode ? '#00B478' : '#D4D4D4')};
+`;
+
+const LightThemeImg = styled(LightTheme)<{ isDarkMode: boolean }>`
+  width: 7.125rem;
+  height: 7.125rem;
+
+  cursor: pointer;
+
+  stroke: ${({ isDarkMode }) => (isDarkMode ? '#D4D4D4' : '#00B478')};
 `;
 
 const WithdrawBoxArticle = styled.article`
@@ -572,7 +636,10 @@ export {
   ThemeContainer,
   ThemeMessageBox,
   ThemeSelectBox,
-  ThemeImg,
+  DarkThemeBox,
+  LightThemeBox,
+  DarkThemeImg,
+  LightThemeImg,
   WithdrawBoxArticle,
   WithdrawBox,
   WithdrawButton,

@@ -468,6 +468,7 @@ export const PaginationIconButton = styled.button`
   border: none;
   border-radius: 0.25rem;
 
+  color: ${({ theme }) => theme.object.solid.normal};
   ${INTERACTION.default.normal()}
 `;
 

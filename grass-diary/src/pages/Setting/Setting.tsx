@@ -17,7 +17,7 @@ import { END_POINT } from '@constants/api';
 import { CONSOLE_ERROR, SETTING_MESSAGES } from '@constants/message';
 
 const Setting = () => {
-  const { isDarkMode, switchTheme } = useTheme();
+  const { isDarkMode, setDarkMode, setLightMode } = useTheme();
   const queryClient: QueryClient = useQueryClient();
   const { nickname, profileIntro }: omitProfileImageURL = useProfile();
   const { setNickName, setProfileIntro } = useProfileActions();
@@ -159,16 +159,18 @@ const Setting = () => {
                 </S.SettingMessage>
               </S.ThemeMessageBox>
               <S.ThemeSelectBox>
-                <S.ThemeImg
-                  src="/assets/icons/darkTheme.svg"
-                  onClick={switchTheme}
-                  style={{ opacity: isDarkMode ? 1 : 0.5 }}
-                />
-                <S.ThemeImg
-                  src="/assets/icons/lightTheme.svg"
-                  onClick={switchTheme}
-                  style={{ opacity: isDarkMode ? 0.5 : 1 }}
-                />
+                <S.DarkThemeBox isDarkMode={isDarkMode}>
+                  <S.DarkThemeImg
+                    isDarkMode={isDarkMode}
+                    onClick={setDarkMode}
+                  />
+                </S.DarkThemeBox>
+                <S.LightThemeBox isDarkMode={isDarkMode}>
+                  <S.LightThemeImg
+                    isDarkMode={isDarkMode}
+                    onClick={setLightMode}
+                  />
+                </S.LightThemeBox>
               </S.ThemeSelectBox>
             </S.ThemeContainer>
             <S.DividerLine />
