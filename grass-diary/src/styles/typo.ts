@@ -1,0 +1,122 @@
+export const TYPO = {
+  display4: {
+    fontSize: '4.5rem',
+    fontStyle: 'normal',
+    fontWeight: 700,
+    lineHeight: '5.5rem',
+    letterSpacing: '-0.018em',
+  },
+  display3: {
+    fontSize: '3.5rem',
+    fontStyle: 'normal',
+    fontWeight: 700,
+    lineHeight: '4.25rem',
+    letterSpacing: '-0.018em',
+  },
+  display2: {
+    fontSize: '3rem',
+    fontStyle: 'normal',
+    fontWeight: 700,
+    lineHeight: '3.625rem',
+    letterSpacing: '-0.018em',
+  },
+  display1: {
+    fontSize: '2.5rem',
+    fontStyle: 'normal',
+    fontWeight: 700,
+    lineHeight: '3rem',
+    letterSpacing: '-0.018em',
+  },
+
+  title3: {
+    fontSize: '2rem',
+    fontStyle: 'normal',
+    fontWeight: 600,
+    lineHeight: '2.625rem',
+    letterSpacing: '-0.0156em',
+  },
+  title2: {
+    fontSize: '1.5rem',
+    fontStyle: 'normal',
+    fontWeight: 600,
+    lineHeight: '2rem',
+    letterSpacing: '-0.0156em',
+  },
+  title1: {
+    fontSize: '1.25rem',
+    fontStyle: 'normal',
+    fontWeight: 600,
+    lineHeight: '1.75rem',
+    letterSpacing: '-0.0156em',
+  },
+
+  body4: {
+    fontFamily: 'Pretendard',
+    fontSize: '1.25rem',
+    fontStyle: 'normal',
+    fontWeight: 400,
+    lineHeight: '2rem',
+  },
+  body3: {
+    fontFamily: 'Pretendard',
+    fontSize: '1.125rem',
+    fontStyle: 'normal',
+    fontWeight: 400,
+    lineHeight: '1.875rem',
+  },
+  body2: {
+    fontFamily: 'Pretendard',
+    fontSize: '1rem',
+    fontStyle: 'normal',
+    fontWeight: 400,
+    lineHeight: '1.75rem',
+  },
+  body1: {
+    fontFamily: 'Pretendard',
+    fontSize: '0.875rem',
+    fontStyle: 'normal',
+    fontWeight: 400,
+    lineHeight: '1.625rem',
+  },
+
+  label3: {
+    fontSize: '1.125rem',
+    fontStyle: 'normal',
+    fontWeight: 500,
+    lineHeight: '1.5rem',
+    letterSpacing: '-0.006em',
+  },
+  label2: {
+    fontSize: '1rem',
+    fontStyle: 'normal',
+    fontWeight: 500,
+    lineHeight: '1.375rem',
+    letterSpacing: '-0.006em',
+  },
+  label1: {
+    fontSize: '0.875rem',
+    fontStyle: 'normal',
+    fontWeight: 500,
+    lineHeight: '1.25rem',
+    letterSpacing: '-0.006em',
+  },
+
+  caption3: {
+    fontSize: '0.9375rem',
+    fontStyle: 'normal',
+    fontWeight: 400,
+    lineHeight: '1.5rem',
+  },
+  caption2: {
+    fontSize: '0.875rem',
+    fontStyle: 'normal',
+    fontWeight: 400,
+    lineHeight: '1.375rem',
+  },
+  caption1: {
+    fontSize: '0.8125rem',
+    fontStyle: 'normal',
+    fontWeight: 400,
+    lineHeight: '1.25rem',
+  },
+} as const;
