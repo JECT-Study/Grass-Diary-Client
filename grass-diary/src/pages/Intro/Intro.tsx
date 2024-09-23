@@ -1,4 +1,8 @@
+import { ThemeProvider } from 'styled-components';
+
 import * as S from '@styles/Intro/IntroStyles';
+import { semantic } from '@styles/semantic';
+import useTheme from '@hooks/useTheme';
 import {
   FirstSection,
   LastSection,
@@ -7,13 +11,17 @@ import {
 } from './introComponents';
 
 const Intro = () => {
+  const { isDarkMode } = useTheme();
+
   return (
-    <S.IntroContainer>
-      <FirstSection />
-      <SecondSection />
-      <ThirdSection />
-      <LastSection />
-    </S.IntroContainer>
+    <ThemeProvider theme={isDarkMode ? semantic.dark : semantic.light}>
+      <S.IntroContainer isDarkMode={isDarkMode}>
+        <FirstSection />
+        <SecondSection />
+        <ThirdSection />
+        <LastSection />
+      </S.IntroContainer>
+    </ThemeProvider>
   );
 };
 

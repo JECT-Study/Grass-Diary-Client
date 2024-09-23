@@ -1,16 +1,20 @@
+import styled from 'styled-components';
+
 import { INTERACTION } from '@styles/interaction';
 import { semantic } from '@styles/semantic';
 import { TYPO } from '@styles/typo';
-import styled from 'styled-components';
 
-const IntroContainer = styled.main`
+const IntroContainer = styled.main<{ isDarkMode: boolean }>`
   display: flex;
   flex-direction: column;
   align-items: center;
 
   min-width: 20rem;
 
-  background: linear-gradient(180deg, #fff 0%, #ebebeb 100%);
+  background: ${({ isDarkMode }) =>
+    isDarkMode
+      ? 'linear-gradient(180deg, #2B2B2B 0%, #1B1B1B 100%)'
+      : 'linear-gradient(180deg, #fff 0%, #ebebeb 100%)'};
 `;
 
 const CommonSection = styled.section`
@@ -71,7 +75,7 @@ const LogoImg = styled.img`
 
 const MainTitle = styled.h2`
   ${TYPO.display2};
-  color: ${semantic.light.object.solid.hero};
+  color: ${({ theme }) => theme.object.solid.hero};
 `;
 
 const MainIntrouctionText = styled.small`
@@ -79,7 +83,7 @@ const MainIntrouctionText = styled.small`
   text-align: center;
 
   ${TYPO.title1}
-  color: ${semantic.light.object.transparent.alternative};
+  color: ${({ theme }) => theme.object.transparent.alternative};
 `;
 
 /** common login button */
@@ -130,17 +134,12 @@ const ScrollMessageContainer = styled.div`
   gap: 0.5rem;
 `;
 
-const ScrollText = styled.small`
+const ScrollText = styled.p`
   align-self: stretch;
-
   text-align: center;
-  ${TYPO.label2}
-  color: ${semantic.light.object.transparent.alternative};
-`;
 
-const ScrollImg = styled.img`
-  width: 1.25rem;
-  height: 1.25rem;
+  ${TYPO.label2}
+  color: ${({ theme }) => theme.object.transparent.alternative};
 `;
 
 /** second section */
@@ -171,14 +170,14 @@ const CommonTitle = styled.h1`
   text-align: center;
 
   ${TYPO.title3}
-  color: ${semantic.light.object.solid.hero};
+  color: ${({ theme }) => theme.object.solid.hero};
 `;
 
 const CommonIntroductionText = styled.p`
   text-align: center;
 
   ${TYPO.label3}
-  color: ${semantic.light.object.transparent.alternative};
+  color:${({ theme }) => theme.object.transparent.alternative};
 `;
 
 const HighlightText = styled.span`
@@ -248,7 +247,6 @@ export {
   ButtonText,
   ScrollMessageContainer,
   ScrollText,
-  ScrollImg,
   CommonArticle,
   CommonTitleContainer,
   CommonTitle,
