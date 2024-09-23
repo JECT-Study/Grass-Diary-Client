@@ -1,7 +1,7 @@
 import { useAuth } from '../auth/useAuth';
 import { useEffect } from 'react';
 import { useQuery } from '@tanstack/react-query';
-import { useMemberId, useSetMemberId } from './userStore';
+import { useMemberId, useSetMemberId } from './UserStore';
 import API from '@services/index';
 import { END_POINT } from '@constants/api';
 
