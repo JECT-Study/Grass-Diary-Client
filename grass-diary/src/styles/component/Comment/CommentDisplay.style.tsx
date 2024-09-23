@@ -15,10 +15,10 @@ export const CommentItem = styled.li<{ $isMe: boolean }>`
     props.$isMe
       ? 'none'
       : `var(--stroke-thin, 1px) solid
-    ${semantic.light.border.transparent.assistive}`};
+    ${props.theme.border.transparent.assistive}`};
 
   background: ${props =>
-    props.$isMe ? semantic.light.fill.transparent.assistive : 'none'};
+    props.$isMe ? props.theme.fill.transparent.assistive : 'none'};
 `;
 
 export const TopBox = styled.div`
@@ -41,20 +41,20 @@ export const ProfileImage = styled.img`
   flex-shrink: 0;
   border-radius: var(--radius-empty, 1.5rem);
   object-fit: cover;
-  background: ${semantic.light.fill.transparent.alternative};
+  background: ${({ theme }) => theme.fill.transparent.alternative};
 `;
 
 export const NameText = styled.p<{ $isMe: boolean }>`
   ${TYPO.label2}
   color: ${props =>
     props.$isMe
-      ? semantic.light.accent.solid.hero
-      : semantic.light.object.solid.normal};
+      ? props.theme.accent.solid.hero
+      : props.theme.object.solid.normal};
 `;
 
 export const TimeText = styled.p`
   ${TYPO.caption1}
-  color: ${semantic.light.object.transparent.assistive};
+  color: ${({ theme }) => theme.object.transparent.assistive};
 `;
 
 export const ContentBox = styled.div<{
@@ -62,11 +62,11 @@ export const ContentBox = styled.div<{
 }>`
   ${TYPO.body1}
   ${props => props.$isReply && `padding-left: var(--gap-2xl, 2rem);`}
-  color: ${semantic.light.object.solid.normal};
+  color: ${({ theme }) => theme.object.solid.normal};
   white-space: pre;
 `;
 
 export const DeletedText = styled.p`
   ${TYPO.body1}
-  color: ${semantic.light.object.transparent.alternative};
+  color: ${({ theme }) => theme.object.transparent.alternative};
 `;

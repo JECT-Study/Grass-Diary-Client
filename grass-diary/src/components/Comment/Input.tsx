@@ -9,6 +9,7 @@ import { usePostComment } from '@hooks/api/comment/usePostComment';
 import { usePatchComment } from '@hooks/api/comment/usePatchComment';
 import { ReactComponent as ReplyIcon } from '@svg/subdirectory_arrow_right.svg';
 import { COMMENT } from '@constants/message';
+import useTheme from '@hooks/useTheme';
 
 const CommentInput = ({
   submit,
@@ -18,6 +19,7 @@ const CommentInput = ({
   isCancelBtn,
   isPatch,
 }: CommentInputProps) => {
+  const { isDarkMode } = useTheme();
   const { profileImageURL, nickname } = useProfile();
   const { resetEditId, resetReplyId } = useCommentActions();
   const [focus, setFocus] = useState(false);
@@ -54,7 +56,7 @@ const CommentInput = ({
     <S.InputContainer $focus={focus} $isReply={isReply}>
       <S.TopBox>
         <S.WriterBox>
-          {isReply && <ReplyIcon />}
+          {isReply && <ReplyIcon fill={isDarkMode ? '#D4D4D4' : '#474747'} />}
           <S.ProfileImage src={profileImageURL} />
           <S.NameText>{nickname}</S.NameText>
         </S.WriterBox>

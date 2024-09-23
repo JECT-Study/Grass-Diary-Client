@@ -2,10 +2,10 @@ import * as S from '@styles/DiaryDetail/DiaryDetail.style';
 import { useState, useEffect } from 'react';
 import DOMPurify from 'dompurify';
 
-import { BackButton, Like, Comments } from '@components/index';
-import EMOJI from '@constants/emoji';
-import ImageModal from './modal/ImageModal';
 import Setting from './Setting';
+import ImageModal from './modal/ImageModal';
+import EMOJI from '@constants/emoji';
+import { BackButton, Like, Comments } from '@components/index';
 
 import { useDiaryDetail } from '@hooks/api/useDiaryDetail';
 import { useParamsId } from '@hooks/useParamsId';
@@ -15,12 +15,16 @@ import { ReactComponent as AvatarBg } from '@svg/avatarBg.svg';
 import { ReactComponent as LockOpen } from '@svg/lock_open.svg';
 import { ReactComponent as Lock } from '@svg/lock.svg';
 import { ReactComponent as Tag } from '@svg/tag.svg';
+import useTheme from '@hooks/useTheme';
 
 const DiaryDetail = () => {
   const diaryId = useParamsId();
   const memberId = useUser();
+
   const [likeCount, setLikeCount] = useState(0);
   const [imageModal, setImageModal] = useState(false);
+
+  const { isDarkMode } = useTheme();
   const { detail, writer } = useDiaryDetail(diaryId);
 
   const zoom = () => {
@@ -69,7 +73,11 @@ const DiaryDetail = () => {
             <S.PrivateBox>
               {detail && (
                 <>
-                  {detail.isPrivate ? <Lock /> : <LockOpen />}
+                  {detail.isPrivate ? (
+                    <Lock fill={isDarkMode ? '#D4D4D4' : '#474747'} />
+                  ) : (
+                    <LockOpen fill={isDarkMode ? '#D4D4D4' : '#474747'} />
+                  )}
                   <S.PrivateText>
                     {detail.isPrivate ? '비공개' : '공개'}
                   </S.PrivateText>
@@ -104,8 +112,8 @@ const DiaryDetail = () => {
           <S.TagList>
             {detail?.tags?.map(tag => {
               return (
-                <S.TagItem key={tag.id}>
-                  <Tag />
+                <S.TagItem isDarkMode={isDarkMode} key={tag.id}>
+                  <Tag fill={isDarkMode ? '#D4D4D4' : '#5E5E5E'} />
                   <S.TagText>{tag.tag}</S.TagText>
                 </S.TagItem>
               );

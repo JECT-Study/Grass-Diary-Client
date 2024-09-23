@@ -7,19 +7,24 @@ import CommentSetting from './CommentSetting';
 import { useTodayDate } from '@hooks/api/useTodayDate';
 import { useUser } from '@state/user/useUser';
 import { COMMENT } from '@constants/message';
+import useTheme from '@hooks/useTheme';
 
 const CommentDisplay = ({ comment, parentId }: CommentDisplayProps) => {
-  const { data: writer } = useWriterProfile(comment.memberId);
   const memberId = useUser();
+  const setting = useRef<HTMLDivElement>(null);
+
   const { setReplyId } = useCommentActions();
   const { date } = useTodayDate();
-  const setting = useRef<HTMLDivElement>(null);
+  const { isDarkMode } = useTheme();
+  const { data: writer } = useWriterProfile(comment.memberId);
+
   const [isToday, setIsToday] = useState(false);
 
   const reply = (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
     if (setting.current) {
       if (setting.current.contains(e.target as HTMLElement)) return;
     }
+
     setReplyId(parentId);
   };
 
@@ -38,7 +43,9 @@ const CommentDisplay = ({ comment, parentId }: CommentDisplayProps) => {
   return comment.deleted ? (
     <S.CommentItem $isMe={memberId === comment.memberId}>
       <S.WriterBox>
-        {comment.depth ? <ReplyIcon /> : null}
+        {comment.depth ? (
+          <ReplyIcon fill={isDarkMode ? '#D4D4D4' : '#474747'} />
+        ) : null}
         <S.DeletedText>{COMMENT.deleted}</S.DeletedText>
       </S.WriterBox>
     </S.CommentItem>
@@ -46,7 +53,9 @@ const CommentDisplay = ({ comment, parentId }: CommentDisplayProps) => {
     <S.CommentItem onClick={reply} $isMe={memberId === comment.memberId}>
       <S.TopBox>
         <S.WriterBox>
-          {comment.depth ? <ReplyIcon /> : null}
+          {comment.depth ? (
+            <ReplyIcon fill={isDarkMode ? '#D4D4D4' : '#474747'} />
+          ) : null}
           <S.ProfileImage src={writer?.profileImageURL} />
           <S.NameText $isMe={memberId === comment.memberId}>
             {writer?.nickname}

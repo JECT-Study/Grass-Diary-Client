@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { semantic } from '@styles/semantic';
 import { TYPO } from '@styles/typo';
 import { ReactComponent as LikeBorder } from '@svg/favorite_border.svg';
 import { ReactComponent as LikeIcon } from '@svg/favorite.svg';
@@ -17,23 +16,23 @@ export const LikeContainer = styled.button<{ $isPushed: boolean }>`
   border: var(--stroke-thin, 0.0625rem) solid
     ${props =>
       props.$isPushed
-        ? semantic.light.accent.solid.normal
-        : semantic.light.border.transparent.alternative};
+        ? props.theme.accent.solid.normal
+        : props.theme.border.transparent.alternative};
 
   background: ${props =>
     props.$isPushed
-      ? semantic.light.accent.transparent.normal
-      : semantic.light.bg.solid.normal};
+      ? props.theme.accent.transparent.normal
+      : props.theme.bg.solid.normal};
 
   color: ${props =>
     props.$isPushed
-      ? semantic.light.accent.solid.hero
-      : semantic.light.object.transparent.alternative};
+      ? props.theme.accent.solid.hero
+      : props.theme.object.transparent.alternative};
 
   ${props =>
     props.$isPushed
-      ? INTERACTION.default.normal(semantic.light.accent.transparent.normal)
-      : INTERACTION.default.normal(semantic.light.bg.solid.normal)}
+      ? INTERACTION.default.normal(props.theme.accent.transparent.normal)
+      : INTERACTION.default.normal(props.theme.bg.solid.normal)}
 `;
 
 export const CountText = styled.p`
@@ -43,7 +42,7 @@ export const CountText = styled.p`
 
 export const YES = styled(LikeIcon)`
   cursor: pointer;
-  fill: ${semantic.light.accent.solid.hero};
+  fill: ${({ theme }) => theme.accent.solid.hero};
 `;
 
 export const No = styled(LikeBorder)`
