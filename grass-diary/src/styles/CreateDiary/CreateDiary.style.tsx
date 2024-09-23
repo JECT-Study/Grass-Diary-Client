@@ -1,31 +1,40 @@
 import styled, { css, keyframes } from 'styled-components';
-import { semantic } from '@styles/semantic';
 import { TYPO } from '@styles/typo';
 
-export const Layout = styled.div`
-  position: relative;
-  min-height: 100vh;
+export const CreateDiaryContainer = styled.div`
   display: flex;
-  margin: 0 auto;
-  max-width: var(--vw-desktop-min, 60rem);
-  padding: var(--gap-xl, 1.5rem) var(--gap-9xl, 8.5rem) var(--gap-4xl, 3rem)
-    var(--gap-9xl, 8.5rem);
+  align-items: center;
+  justify-content: center;
+
+  background: ${({ theme }) => theme.bg.solid.subtler};
+`;
+
+export const Layout = styled.div`
+  display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: var(--gap-lg, 1.25rem);
-  flex: 1 0 0;
   align-self: stretch;
+  flex: 1 0 0;
 
-  border-top: var(--stroke-empty, 0px) solid
-    ${semantic.light.border.transparent.alternative};
-  border-right: var(--stroke-thin, 1px) solid
-    ${semantic.light.border.transparent.alternative};
-  border-bottom: var(--stroke-empty, 0px) solid
-    ${semantic.light.border.transparent.alternative};
-  border-left: var(--stroke-thin, 1px) solid
-    ${semantic.light.border.transparent.alternative};
+  position: relative;
 
-  background: ${semantic.light.bg.solid.subtlest};
+  min-height: 100vh;
+  max-width: var(--vw-desktop-min, 60rem);
+
+  gap: var(--gap-lg, 1.25rem);
+  padding: var(--gap-xl, 1.5rem) var(--gap-9xl, 8.5rem) var(--gap-4xl, 3rem)
+    var(--gap-9xl, 8.5rem);
+
+  border-top: ${({ theme }) => `var(--stroke-empty, 0px) solid
+    ${theme.border.transparent.alternative}`};
+  border-right: ${({ theme }) => `var(--stroke-thin, 1px) solid
+    ${theme.border.transparent.alternative}`};
+  border-bottom: ${({ theme }) => `var(--stroke-empty, 0px) solid
+    ${theme.border.transparent.alternative}`};
+  border-left: ${({ theme }) => `var(--stroke-thin, 1px) solid
+    ${theme.border.transparent.alternative}`};
+
+  background: ${({ theme }) => theme.bg.solid.subtlest};
 
   @media screen and (max-width: 60em) {
     display: grid;
@@ -55,17 +64,15 @@ export const SaveWrapContainer = styled.div`
 `;
 
 export const SaveWrapText = styled.p`
-  color: ${semantic.light.object.transparent.neutral};
-
   ${TYPO.title1};
+  color: ${({ theme }) => theme.object.transparent.neutral};
 `;
 
 export const SaveWrapTime = styled.p`
   flex: 1 0 0;
 
-  color: ${semantic.light.object.transparent.alternative};
-
   ${TYPO.label1}
+  color: ${({ theme }) => theme.object.transparent.alternative};
 `;
 
 export const SaveBtnContainer = styled.div`
@@ -89,16 +96,16 @@ export const SavePrevBtn = styled.button<{ disabled: boolean }>`
   gap: var(--gap-2xs, 0.5rem);
 
   border-radius: var(--radius-xs, 0.5rem);
-  border: var(--stroke-thin, 1px) solid
-    ${semantic.light.border.transparent.alternative};
+  border: ${({ theme }) =>
+    `var(--stroke-thin, 1px) solid ${theme.border.transparent.alternative}`};
 
-  background: ${semantic.light.bg.solid.normal};
+  background: ${({ theme }) => theme.bg.solid.normal};
 
   &:hover {
     background: ${({ disabled }) =>
       disabled
-        ? semantic.light.bg.solid.normal
-        : semantic.light.bg.solid.subtlest};
+        ? ({ theme }) => theme.bg.solid.normal
+        : ({ theme }) => theme.bg.solid.subtlest};
   }
 
   cursor: ${({ disabled }) => (disabled ? 'not-allowed' : 'pointer')};
@@ -107,10 +114,10 @@ export const SavePrevBtn = styled.button<{ disabled: boolean }>`
 `;
 
 export const SavePrevBtnText = styled.p`
-  color: ${semantic.light.object.transparent.alternative};
   text-align: center;
 
   ${TYPO.label2}
+  color: ${({ theme }) => theme.object.transparent.alternative};
 `;
 
 export const SaveBtn = styled.button<{ disabled: boolean }>`
@@ -121,29 +128,23 @@ export const SaveBtn = styled.button<{ disabled: boolean }>`
   gap: var(--gap-2xs, 0.5rem);
 
   border-radius: var(--radius-xs, 0.5rem);
-  background: ${({ disabled }) =>
-    disabled
-      ? semantic.light.interactive.solid.disabled
-      : semantic.light.accent.solid.normal};
+  background: ${({ disabled, theme }) =>
+    disabled ? theme.interactive.solid.disabled : theme.accent.solid.normal};
   cursor: ${({ disabled }) => (disabled ? 'not-allowed' : 'pointer')};
 
   &:hover {
-    background: ${({ disabled }) =>
-      disabled
-        ? semantic.light.interactive.solid.disabled
-        : semantic.light.accent.solid.hero};
+    background: ${({ disabled, theme }) =>
+      disabled ? theme.interactive.solid.disabled : theme.accent.solid.hero};
   }
 
   transition: all 0.2s ease-in;
 `;
 
 export const SaveBtnText = styled.p<{ disabled: boolean }>`
-  color: ${({ disabled }) =>
-    disabled
-      ? semantic.light.object.transparent.disabled
-      : semantic.light.base.solid.white};
-  text-align: center;
+  color: ${({ disabled, theme }) =>
+    disabled ? theme.object.transparent.disabled : theme.base.solid.white};
 
+  text-align: center;
   ${TYPO.label2}
 `;
 
@@ -170,14 +171,16 @@ export const ModeBoxContainer = styled.div`
 
 export const DiaryModeSelectorText = styled.p`
   align-self: stretch;
-  color: ${semantic.light.object.transparent.neutral};
+
   ${TYPO.label2}
+  color: ${({ theme }) => theme.object.transparent.neutral};
 `;
 
 export const DiaryModeSelectorSubText = styled.p`
   align-self: stretch;
-  color: ${semantic.light.object.transparent.alternative};
+
   ${TYPO.caption1}
+  color: ${({ theme }) => theme.object.transparent.alternative};
 `;
 
 export const DailyQuestionBox = styled.div<{ $isSelected: boolean }>`
@@ -190,12 +193,12 @@ export const DailyQuestionBox = styled.div<{ $isSelected: boolean }>`
   border: var(--stroke-thin, 1px) solid
     ${props =>
       props.$isSelected
-        ? semantic.light.accent.solid.hero
-        : semantic.light.border.transparent.alternative};
+        ? props.theme.accent.solid.hero
+        : props.theme.border.transparent.alternative};
   background: ${props =>
     props.$isSelected
-      ? semantic.light.accent.transparent.alternative
-      : semantic.light.bg.solid.normal};
+      ? props.theme.accent.transparent.alternative
+      : ({ theme }) => theme.bg.solid.normal};
 
   cursor: pointer;
 `;
@@ -206,16 +209,18 @@ export const CustomEntryBox = styled.div<{ $isSelected: boolean }>`
   align-items: center;
   gap: var(--gap-lg, 1.25rem);
   flex: 1 0 0;
+
   border-radius: var(--radius-sm, 0.75rem);
   border: var(--stroke-thin, 1px) solid
     ${props =>
       props.$isSelected
-        ? semantic.light.accent.solid.hero
-        : semantic.light.border.transparent.alternative};
+        ? props.theme.accent.solid.hero
+        : props.theme.border.transparent.alternative};
+
   background: ${props =>
     props.$isSelected
-      ? semantic.light.accent.transparent.alternative
-      : semantic.light.bg.solid.normal};
+      ? props.theme.accent.transparent.alternative
+      : ({ theme }) => theme.bg.solid.normal};
 
   cursor: pointer;
 `;
@@ -232,11 +237,13 @@ export const ModeBtn = styled.div`
     justify-content: center;
     align-items: center;
     border-radius: var(--radius-lg, 1.5rem);
-    border: var(--stroke-thick, 0.125rem) solid
-      ${semantic.light.border.transparent.normal};
-    background: ${semantic.light.fill.transparent.assistive};
+    border: ${({ theme }) => `var(--stroke-thick, 0.125rem) solid
+      ${theme.border.transparent.normal}`};
+    background: ${({ theme }) => theme.fill.transparent.assistive};
     cursor: pointer;
-    transition: border 0.2s ease-in-out, border-color 0.2s ease-in-out;
+    transition:
+      border 0.2s ease-in-out,
+      border-color 0.2s ease-in-out;
 
     &:hover {
       box-shadow: 0 0 0 0.1rem lightgray;
@@ -244,9 +251,9 @@ export const ModeBtn = styled.div`
   }
 
   [type='radio']:checked + label {
-    background: ${semantic.light.accent.transparent.hero};
-    border: var(--stroke-thicker, 0.25rem) solid
-      ${semantic.light.accent.solid.hero};
+    background: ${({ theme }) => theme.accent.transparent.hero};
+    border: ${({ theme }) =>
+      `var(--stroke-thicker, 0.25rem) solid ${theme.accent.solid.hero}`};
   }
 `;
 
@@ -266,7 +273,7 @@ export const DividerLine = styled.span`
   width: 43rem;
   height: 0.0625rem;
 
-  background: ${semantic.light.border.transparent.alternative};
+  background: ${({ theme }) => theme.border.transparent.alternative};
 `;
 
 export const ImageLayout = styled.div`
@@ -291,15 +298,13 @@ export const Image = styled.div`
 `;
 
 export const ImageName = styled.p`
-  color: ${semantic.light.object.transparent.neutral};
-
   ${TYPO.caption1}
+  color: ${({ theme }) => theme.object.transparent.neutral};
 `;
 
 export const ImageData = styled.p`
-  color: ${semantic.light.object.transparent.assistive};
-
   ${TYPO.caption1}
+  color: ${({ theme }) => theme.object.transparent.assistive};
 `;
 
 export const ImageDelete = styled.div`
@@ -348,9 +353,8 @@ export const HashtagTitleBox = styled.div`
 `;
 
 export const HashtagTitle = styled.p`
-  color: ${semantic.light.object.transparent.alternative};
-
   ${TYPO.label1}
+  color: ${({ theme }) => theme.object.transparent.alternative};
 
   @media screen and (max-width: 60em) {
     padding-top: 1.8em;
@@ -365,9 +369,9 @@ export const HashtagBox = styled.div`
   align-self: stretch;
 
   border-radius: var(--radius-xs, 0.5rem);
-  border: var(--stroke-thin, 1px) solid
-    ${semantic.light.border.transparent.alternative};
-  background: ${semantic.light.bg.solid.normal};
+  border: ${({ theme }) =>
+    `var(--stroke-thin, 1px) solid ${theme.border.transparent.alternative}`};
+  background: ${({ theme }) => theme.bg.solid.normal};
 `;
 
 export const HashtagContent = styled.div`
@@ -385,12 +389,12 @@ export const HashtagInput = styled.input`
   ${TYPO.body1}
 
   &::placeholder {
-    color: ${semantic.light.object.transparent.assistive};
+    color: ${({ theme }) => theme.object.transparent.assistive};
   }
 `;
 
 export const HashtagArrTitle = styled.p`
-  color: ${semantic.light.accent.solid.hero};
+  color: ${({ theme }) => theme.accent.solid.hero};
 
   font-size: 0.875rem;
   font-style: normal;
@@ -418,7 +422,7 @@ export const CaptionText = styled.p<{ color: string }>`
   ${TYPO.caption1}
 
   ${props =>
-    props.color === semantic.light.feedback.solid.negative &&
+    props.color === props.theme.feedback.solid.negative &&
     css`
       animation: ${CaptionTextShake} 0.3s ease;
     `}
@@ -447,14 +451,15 @@ export const SelectablePublicBox = styled.div`
   gap: var(--gap-lg, 1.25rem);
 
   border-radius: var(--radius-xs, 0.5rem);
-  border: var(--stroke-thin, 1px) solid
-    ${semantic.light.border.transparent.alternative};
-  background: ${semantic.light.bg.solid.normal};
+  border: ${({ theme }) =>
+    `var(--stroke-thin, 1px) solid ${theme.border.transparent.alternative}`};
+
+  background: ${({ theme }) => theme.bg.solid.normal};
 `;
 
 export const SelectablePublicText = styled.p`
-  color: ${semantic.light.object.transparent.neutral};
   ${TYPO.label1}
+  color: ${({ theme }) => theme.object.transparent.neutral};
 `;
 
 export const SelectableSection = styled.div`
@@ -477,16 +482,21 @@ export const RadioBtn = styled.div`
 
   label {
     display: flex;
+    align-items: center;
+    justify-content: center;
+
     width: 1.25rem;
     height: 1.25rem;
-    justify-content: center;
-    align-items: center;
+
     border-radius: var(--radius-lg, 1.5rem);
-    border: var(--stroke-thick, 0.125rem) solid
-      ${semantic.light.border.transparent.normal};
-    background: ${semantic.light.fill.transparent.assistive};
+    border: ${({ theme }) => `var(--stroke-thick, 0.125rem) solid
+      ${theme.border.transparent.normal}`};
+    background: ${({ theme }) => theme.fill.transparent.assistive};
+
     cursor: pointer;
-    transition: border 0.2s ease-in-out, border-color 0.2s ease-in-out;
+    transition:
+      border 0.2s ease-in-out,
+      border-color 0.2s ease-in-out;
 
     &:hover {
       box-shadow: 0 0 0 0.1rem lightgray;
@@ -494,16 +504,15 @@ export const RadioBtn = styled.div`
   }
 
   [type='radio']:checked + label {
-    background: ${semantic.light.accent.transparent.hero};
-    border: var(--stroke-thicker, 0.25rem) solid
-      ${semantic.light.accent.solid.hero};
+    background: ${({ theme }) => theme.accent.transparent.hero};
+    border: ${({ theme }) =>
+      `var(--stroke-thicker, 0.25rem) solid ${theme.accent.solid.hero}`};
   }
 `;
 
 export const RadioText = styled.p`
-  color: ${semantic.light.object.transparent.alternative};
-
   ${TYPO.label1}
+  color: ${({ theme }) => theme.object.transparent.alternative};
 `;
 
 export const EmotionBox = styled.div`
@@ -513,9 +522,10 @@ export const EmotionBox = styled.div`
   gap: var(--gap-lg, 1.25rem);
 
   border-radius: var(--radius-xs, 0.5rem);
-  border: var(--stroke-thin, 1px) solid
-    ${semantic.light.border.transparent.alternative};
-  background: ${semantic.light.bg.solid.normal};
+  border: ${({ theme }) =>
+    `var(--stroke-thin, 1px) solid ${theme.border.transparent.alternative}`};
+
+  background: ${({ theme }) => theme.bg.solid.normal};
 
   @media screen and (max-width: 60em) {
     width: 20em;
@@ -524,9 +534,8 @@ export const EmotionBox = styled.div`
 `;
 
 export const EmotionText = styled.p`
-  color: ${semantic.light.object.transparent.neutral};
-
   ${TYPO.label1}
+  color: ${({ theme }) => theme.object.transparent.neutral};
 `;
 
 export const EmojiBox = styled.div`
@@ -541,10 +550,11 @@ export const EmojiSelectableBox = styled.div`
   justify-content: center;
   align-items: center;
 
-  border: var(--stroke-thin, 0.06rem) solid
-    ${semantic.light.border.transparent.normal};
+  border: ${({ theme }) =>
+    `var(--stroke-thin, 0.06rem) solid ${theme.border.transparent.normal}`};
   border-radius: var(--radius-xs, 0.5rem);
-  background: ${semantic.light.fill.transparent.alternative};
+
+  background: ${({ theme }) => theme.fill.transparent.alternative};
 `;
 
 export const EmojiInput = styled.input`
@@ -560,8 +570,8 @@ export const EmojiLabel = styled.label`
 
   ${EmojiInput}:checked + & {
     padding: 0rem 0.2rem 0rem 0.2rem;
-    background: ${semantic.light.accent.transparent.hero};
-    border: var(--stroke-thicker, 0.1rem) solid
-      ${semantic.light.accent.solid.hero};
+    background: ${({ theme }) => theme.accent.transparent.hero};
+    border: ${({ theme }) =>
+      `var(--stroke-thicker, 0.1rem) solid ${theme.accent.solid.hero}`};
   }
 `;

@@ -2,7 +2,7 @@ import { createGlobalStyle } from 'styled-components';
 import { TYPO } from './typo';
 import { semantic } from './semantic';
 
-export const GlobalStyle = createGlobalStyle`
+export const GlobalStyle = createGlobalStyle<{ isDarkMode: boolean }>`
   @font-face {
     font-family: 'KoPubWorldDotum';
     font-display: swap;
@@ -132,13 +132,13 @@ export const GlobalStyle = createGlobalStyle`
     padding-left: 16px;
   }
 
-  .ql-toolbar.ql-snow{
+  .ql-toolbar .ql-snow{
     border-top-right-radius: 0.75rem;
     border-top-left-radius: 0.75rem;
   }
 
-  .ql-container.ql-snow{
-    background-color:white;
+  .ql-container .ql-snow {
+    background-color: ${semantic.light.bg.solid.normal}; 
     border-bottom-right-radius: 0.75rem;
     border-bottom-left-radius: 0.75rem;
   }
@@ -147,17 +147,36 @@ export const GlobalStyle = createGlobalStyle`
     height: 50vh;
     width: 42.5rem;
 
-    color: ${semantic.light.object.solid.hero};
     ${TYPO.body2}
+    color: ${semantic.light.object.solid.hero};
 
     @media screen and (max-width: 60em) {
-    height:36.25em;
-    width: 20em;
-    gap: 1.5em;
+      height:36.25em;
+      width: 20em;
+      gap: 1.5em;
+    }
   }
 
+  /* 다크 모드 스타일 */
+  body[data-theme='dark'] .ql-container {
+    background-color: ${semantic.dark.bg.solid.normal}; 
+    border: 1px solid ${semantic.dark.border.transparent.alternative};
   }
 
+  /* 다크 모드에서 툴바 색상 */
+  body[data-theme='dark'] .ql-toolbar {
+    background-color: ${semantic.dark.bg.solid.normal};
+    border: 1px solid ${semantic.dark.border.transparent.alternative};
+  }
+
+  /* 다크 모드에서 버튼 색상 */
+  body[data-theme='dark'] .ql-toolbar .ql-stroke {
+    stroke: #D4D4D4; /* 다크 모드 아이콘 색상 */
+  }
+
+  body[data-theme='dark'] .ql-editor {
+    color: ${semantic.dark.object.solid.hero};
+  }
 
   input {
     margin: 0;

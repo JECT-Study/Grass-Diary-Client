@@ -347,7 +347,7 @@ const CreateDiary = () => {
   }, [diaryInfo]);
 
   return (
-    <>
+    <S.CreateDiaryContainer>
       <S.Layout>
         <S.SaveWrap>
           <S.SaveWrapContainer>
@@ -535,7 +535,7 @@ const CreateDiary = () => {
           </S.EmotionBox>
         </S.SelectableContainer>
       </S.Layout>
-    </>
+    </S.CreateDiaryContainer>
   );
 };
 
