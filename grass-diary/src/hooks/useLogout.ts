@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { useAuthActions } from '@state/auth/authStore';
-import { useSetMemberId } from '@state/user/userStore';
+import { useSetMemberId } from '@state/user/UserStore';
 
 const useLogout = () => {
   const navigate = useNavigate();
