@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import { TYPO } from '@styles/typo';
-import { semantic } from '@styles/semantic';
 
 export const Article = styled.article`
   display: flex;
@@ -20,10 +19,11 @@ export const Container = styled.li<{ $isTop: boolean }>`
   margin-bottom: 1rem;
 
   border-radius: var(--radius-md, 1rem);
-  border: var(--stroke-thin, 0.0625rem) solid
-    ${semantic.light.border.transparent.assistive};
-  background: ${semantic.light.bg.solid.normal};
-  box-shadow: 0px 0px 1px 0px rgba(0, 0, 0, 0.04),
+  border: ${({ theme }) => `var(--stroke-thin, 0.0625rem) solid
+    ${theme.border.transparent.assistive}`};
+  background: ${({ theme }) => theme.bg.solid.normal};
+  box-shadow:
+    0px 0px 1px 0px rgba(0, 0, 0, 0.04),
     0px 2px 4px 0px rgba(0, 0, 0, 0.08);
 
   @media screen and (max-width: 60em) {
@@ -44,7 +44,7 @@ export const UserImage = styled.img`
   height: 2.5rem;
 
   border-radius: var(--radius-empty, 2.5rem);
-  background: ${semantic.light.fill.transparent.alternative};
+  background: ${({ theme }) => theme.fill.transparent.alternative};
   object-fit: cover;
 `;
 
@@ -58,15 +58,13 @@ export const TextBox = styled.div`
 `;
 
 export const TimeText = styled.p`
-  color: ${semantic.light.object.transparent.assistive};
-
   ${TYPO.caption1}
+  color: ${({ theme }) => theme.object.transparent.assistive};
 `;
 
 export const DateText = styled.div`
-  color: ${semantic.light.object.transparent.neutral};
-
   ${TYPO.label1}
+  color: ${({ theme }) => theme.object.transparent.neutral};
 `;
 
 export const NameBox = styled.div`
@@ -74,8 +72,8 @@ export const NameBox = styled.div`
   align-items: center;
   gap: var(--gap-2xs, 0.5rem);
 
-  color: ${semantic.light.object.transparent.neutral};
   ${TYPO.label1}
+  color: ${({ theme }) => theme.object.transparent.neutral};
 `;
 
 export const EmojiBox = styled.div`
@@ -86,10 +84,10 @@ export const EmojiBox = styled.div`
   align-items: center;
 
   border-radius: var(--radius-round, 6rem);
-  border: var(--stroke-thin, 0.0625rem) solid
-    ${semantic.light.border.transparent.assistive};
+  border: ${({ theme }) => `var(--stroke-thin, 0.0625rem) solid
+    ${theme.border.transparent.assistive}`};
 
-  background: ${semantic.light.fill.transparent.assistive};
+  background: ${({ theme }) => theme.fill.transparent.assistive};
 `;
 
 export const BottomBox = styled.div`
@@ -109,9 +107,10 @@ export const ContentText = styled.div<{ $isTop: boolean; $hasImage: boolean }>`
 
   align-self: stretch;
   word-break: break-all;
-  color: ${semantic.light.object.solid.normal};
-  ${TYPO.body2}
   overflow: hidden;
+
+  ${TYPO.body2}
+  color: ${({ theme }) => theme.object.solid.normal};
 `;
 
 export const Image = styled.img<{ $isTop: boolean }>`
@@ -134,6 +133,7 @@ export const IconBox = styled.div`
   padding: var(--gap-5xs, 0.125rem) var(--gap-empty, 0rem);
   align-items: center;
   gap: var(--gap-2xs, 0.5rem);
-  color: ${semantic.light.object.transparent.assistive};
+
   ${TYPO.label3}
+  color: ${({ theme }) => theme.object.transparent.assistive};
 `;

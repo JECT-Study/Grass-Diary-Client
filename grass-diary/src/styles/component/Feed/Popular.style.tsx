@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import { TYPO } from '@styles/typo';
-import { semantic } from '@styles/semantic';
 import Slider from 'react-slick';
 
 export const SeeMoreContainer = styled.div`
@@ -14,10 +13,10 @@ export const SeeMoreContainer = styled.div`
 `;
 
 export const SeeMoreButton = styled.button`
-  color: ${semantic.light.object.transparent.alternative};
   text-align: center;
 
   ${TYPO.label2}
+  color: ${({ theme }) => theme.object.transparent.alternative};
 `;
 
 export const FeedBox = styled.div`
@@ -59,11 +58,11 @@ export const SliderBox = styled.div`
     width: 12px;
     height: 12px;
     border-radius: 6px;
-    background: ${semantic.light.fill.transparent.normal};
+    background: ${({ theme }) => theme.fill.transparent.normal};
   }
 
   .slick-dots .slick-active button {
-    background: ${semantic.light.accent.solid.normal};
+    background: ${({ theme }) => theme.accent.solid.normal};
   }
 `;
 
@@ -88,7 +87,7 @@ export const RankSection = styled.section`
   gap: var(--gap-2xl, 2rem);
   align-self: stretch;
   overflow: hidden;
-  background: ${semantic.light.fill.transparent.alternative};
+  background: ${({ theme }) => theme.fill.transparent.alternative};
 
   @media screen and (max-width: 60em) {
     min-width: 20em;
@@ -102,7 +101,7 @@ export const RankText = styled.span`
   flex-direction: column;
   gap: var(--gap-md, 1rem);
 
-  color: ${semantic.light.object.transparent.neutral};
+  color: ${({ theme }) => theme.object.transparent.neutral};
   text-align: center;
 
   ${TYPO.title2}

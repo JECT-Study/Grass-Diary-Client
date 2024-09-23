@@ -11,32 +11,46 @@ import { Callout, Feed } from '@components/index';
 import { usePopularDiaries } from '@hooks/api/usePopularDiaries';
 import { Link, useLocation } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+import useTheme from '@hooks/useTheme';
 
 const PrevArrow = (props: CustomArrowProps) => {
+  const { isDarkMode } = useTheme();
+
   return (
     <S.ArrowBox onClick={props.onClick}>
       <LeftArrow
         width={20}
         height={20}
-        fill={semantic.light.object.transparent.neutral}
+        fill={
+          isDarkMode
+            ? semantic.dark.object.transparent.neutral
+            : semantic.light.object.transparent.neutral
+        }
       />
     </S.ArrowBox>
   );
 };
 
 const NextArrow = (props: CustomArrowProps) => {
+  const { isDarkMode } = useTheme();
+
   return (
     <S.ArrowBox onClick={props.onClick}>
       <RightArrow
         width={20}
         height={20}
-        fill={semantic.light.object.transparent.neutral}
+        fill={
+          isDarkMode
+            ? semantic.dark.object.transparent.neutral
+            : semantic.light.object.transparent.neutral
+        }
       />
     </S.ArrowBox>
   );
 };
 
 const PopularFeed = () => {
+  const { isDarkMode } = useTheme();
   const { data: top10 } = usePopularDiaries();
   const location = useLocation();
   const [mobileSize, setMobileSize] = useState(false);
@@ -83,7 +97,11 @@ const PopularFeed = () => {
               <RightArrow
                 width={18}
                 height={18}
-                fill={semantic.light.object.transparent.alternative}
+                fill={
+                  isDarkMode
+                    ? semantic.dark.object.transparent.alternative
+                    : semantic.light.object.transparent.alternative
+                }
               />
             </S.SeeMoreContainer>
           </Link>
