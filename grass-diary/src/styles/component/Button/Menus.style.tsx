@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { semantic } from '@styles/semantic';
 import { INTERACTION } from '@styles/interaction';
 
 export const MenusWrapper = styled.div`
@@ -25,10 +24,12 @@ export const MenusNav = styled.nav<{ $toggle: boolean }>`
   align-items: flex-start;
 
   border-radius: var(--radius-md, 1rem);
-  background: ${semantic.light.bg.solid.normal};
+  background: ${({ theme }) => theme.bg.solid.normal};
 
-  box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.06),
-    0px 2px 4px 0px rgba(0, 0, 0, 0.06), 0px 4px 8px 0px rgba(0, 0, 0, 0.13);
+  box-shadow:
+    0px 0px 2px 0px rgba(0, 0, 0, 0.06),
+    0px 2px 4px 0px rgba(0, 0, 0, 0.06),
+    0px 4px 8px 0px rgba(0, 0, 0, 0.13);
 
   position: absolute;
   top: 0;

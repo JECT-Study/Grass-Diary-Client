@@ -15,7 +15,7 @@ export const MenuBox = styled.div`
 export const MenuText = styled.p<{ color?: string }>`
   ${TYPO.label2};
   flex: 1 0 0;
-  color: ${props => props.color || semantic.light.object.solid.normal};
+  color: ${props => props.color || props.theme.object.solid.normal};
   text-align: left;
 `;
 
