@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { semantic } from '@styles/semantic';
 import { TYPO } from '@styles/typo';
 
 export const Container = styled.div`
@@ -23,17 +22,17 @@ export const GrassLabel = styled.div`
   gap: var(--gap-3xs, 0.375rem);
 
   border-radius: var(--radius-sm, 0.75rem);
-  border: var(--stroke-thin, 0.0625rem) solid
-    ${semantic.light.border.transparent.alternative};
+  border: ${({ theme }) => `var(--stroke-thin, 0.0625rem) solid
+    ${theme.border.transparent.alternative}`};
 
-  background: ${semantic.light.fill.transparent.alternative};
+  background: ${({ theme }) => theme.fill.transparent.alternative};
 `;
 
 export const GrassLabelText = styled.p`
-  color: ${semantic.light.object.transparent.alternative};
   text-align: center;
 
   ${TYPO.label2}
+  color: ${({ theme }) => theme.object.transparent.alternative};
 `;
 
 export const GrassBanner = styled.div`
@@ -46,23 +45,22 @@ export const GrassBanner = styled.div`
 
 export const GrassBannerText = styled.p`
   align-self: stretch;
-  color: ${semantic.light.object.transparent.alternative};
   text-align: center;
 
   ${TYPO.title1}
+  color: ${({ theme }) => theme.object.transparent.alternative};
 `;
 
 export const GrassBannerTextSecond = styled.p`
   align-self: stretch;
-
-  color: ${semantic.light.object.transparent.alternative};
   text-align: center;
 
   ${TYPO.label2}
+  color: ${({ theme }) => theme.object.transparent.alternative};
 `;
 
 export const HighlightedText = styled.span`
-  color: ${semantic.light.accent.solid.normal};
+  color: ${({ theme }) => theme.accent.solid.normal};
 `;
 
 export const GrassTableBox = styled.div`
@@ -84,10 +82,10 @@ export const DayBox = styled.div`
   height: 3.5rem;
 
   border-radius: var(--radius-sm, 0.75rem);
+  background: ${({ theme }) => theme.fill.transparent.assistive};
 
-  background: ${semantic.light.fill.transparent.assistive};
-
-  box-shadow: 0rem 0rem 0.0625rem 0rem rgba(0, 0, 0, 0.04),
+  box-shadow:
+    0rem 0rem 0.0625rem 0rem rgba(0, 0, 0, 0.04),
     0rem 0.125rem 0.25rem 0rem rgba(0, 0, 0, 0.08);
 
   @media screen and (max-width: 60em) {
@@ -95,10 +93,10 @@ export const DayBox = styled.div`
     height: 2em;
 
     border-radius: var(--radius-sm, 0.75rem);
+    background: ${({ theme }) => theme.fill.transparent.assistive};
 
-    background: ${semantic.light.fill.transparent.assistive};
-
-    box-shadow: 0rem 0rem 0.0625rem 0rem rgba(0, 0, 0, 0.04),
+    box-shadow:
+      0rem 0rem 0.0625rem 0rem rgba(0, 0, 0, 0.04),
       0rem 0.125rem 0.25rem 0rem rgba(0, 0, 0, 0.08);
   }
 `;

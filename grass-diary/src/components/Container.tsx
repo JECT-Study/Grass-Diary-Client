@@ -1,17 +1,15 @@
-import stylex from '@stylexjs/stylex';
-
-const styles = stylex.create({
-  container: {
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-
-    gap: '10px',
-  },
-});
+import styled from 'styled-components';
 
 const Container = ({ children }: IContainer) => {
-  return <div {...stylex.props(styles.container)}>{children}</div>;
+  return <SContainer>{children}</SContainer>;
 };
 
 export default Container;
+
+const SContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  background: ${({ theme }) => theme.bg.solid.subtler};
+`;
