@@ -10,6 +10,7 @@ import { useModal } from '@state/modal/useModal';
 import { INTERACTION } from '@styles/interaction';
 import { MODAL } from '@constants/message';
 import { useUser } from '@state/user/useUser';
+import { API_URI } from '@services/index';
 
 interface IFeedProps {
   feed: Feed;
@@ -38,7 +39,7 @@ const Feed = ({ feed, isTop }: IFeedProps) => {
   };
 
   const handleGoogleLogin: TGoogleLogin = () => {
-    window.open(`http://localhost:8080/api/auth/google`, '_self');
+    window.open(`${API_URI}/api/auth/google`, '_self');
   };
 
   const FeedClickHandler = () => {

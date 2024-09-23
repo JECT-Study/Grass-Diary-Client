@@ -10,6 +10,7 @@ import {
   useModalButton1,
   useModalButton2,
 } from '@state/modal/ModalButtonStore';
+import { API_URI } from '@services/index';
 
 const Modal = () => {
   const login = useModalLogin();
@@ -20,7 +21,7 @@ const Modal = () => {
   const { setLogin, setActive } = useModalActions();
 
   const handleGoogleLogin: TGoogleLogin = () => {
-    window.open(`http://localhost:8080/api/auth/google`, '_self');
+    window.open(`${API_URI}/api/auth/google`, '_self');
   };
 
   return (
