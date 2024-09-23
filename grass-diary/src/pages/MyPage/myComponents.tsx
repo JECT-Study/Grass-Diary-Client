@@ -6,6 +6,7 @@ import Diary from './Diary';
 import * as S from '../../styles/MyPage/MyStyles';
 import { EllipsisBox, EllipsisIcon, Profile } from '@components/index';
 import { useProfile } from '@state/profile/useProfile';
+import useTheme from '@hooks/useTheme';
 
 const MainContainer = () => {
   const navigate = useNavigate();
@@ -58,6 +59,7 @@ interface IProfileSection {
 }
 
 const ProfileSection = ({ setSelectedDiary }: IProfileSection) => {
+  const { isDarkMode } = useTheme();
   const { nickname, profileIntro } = useProfile();
 
   return (
@@ -73,7 +75,7 @@ const ProfileSection = ({ setSelectedDiary }: IProfileSection) => {
         <S.GrassYearTagBox>
           <S.GrassYearText>2024년 잔디 현황</S.GrassYearText>
         </S.GrassYearTagBox>
-        <Grass setSelectedDiary={setSelectedDiary} />
+        <Grass isDarkMode={isDarkMode} setSelectedDiary={setSelectedDiary} />
       </S.GrassArticle>
     </>
   );

@@ -5,16 +5,21 @@ import { useState, useEffect } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 
-import API from '@services/index';
-
-import { semantic } from '@styles/semantic';
-import useDiary from '@hooks/api/useDiary';
-import { useUser } from '@state/user/useUser';
 import { ReactComponent as FavoriteIcon } from '@svg/favorite.svg';
 import { ReactComponent as CommentIcon } from '@svg/comment.svg';
-import { MoodProfile, Profile, Divider } from '@components/index';
+import { ReactComponent as FirstPage } from '@svg/icon-btn-first-page.svg';
+import { ReactComponent as LastPage } from '@svg/icon-btn-last-page.svg';
+import { ReactComponent as PreviousPage } from '@svg/icon-btn-chevron-left.svg';
+import { ReactComponent as NextPage } from '@svg/icon-btn-chevron-right.svg';
+
+import API from '@services/index';
+import useDiary from '@hooks/api/useDiary';
 import Setting from '@pages/DiaryDetail/Setting';
+import { semantic } from '@styles/semantic';
+import { useUser } from '@state/user/useUser';
 import { END_POINT } from '@constants/api';
+import { MoodProfile, Profile, Divider } from '@components/index';
+import useTheme from '@hooks/useTheme';
 
 interface IPagination {
   pageSize: number;
@@ -23,6 +28,7 @@ interface IPagination {
 }
 
 const Pagination = ({ pageSize, currentPage, onPageChange }: IPagination) => {
+  const { isDarkMode } = useTheme();
   const handleFirstPage = () => onPageChange(0);
 
   const handlePreviousPage = () => {
@@ -40,10 +46,10 @@ const Pagination = ({ pageSize, currentPage, onPageChange }: IPagination) => {
   return (
     <S.PaginationContainer>
       <S.PaginationIconButton onClick={handleFirstPage}>
-        <S.PaginationImg $imageURL="/assets/icons/icon-btn-first-page.svg" />
+        <FirstPage fill={isDarkMode ? '#E2E2E2' : '#3B3B3B'} />
       </S.PaginationIconButton>
       <S.PaginationIconButton onClick={handlePreviousPage}>
-        <S.PaginationImg $imageURL="/assets/icons/icon-btn-chevron-left.svg" />
+        <PreviousPage fill={isDarkMode ? '#E2E2E2' : '#3B3B3B'} />
       </S.PaginationIconButton>
       {Array.from({ length: pageSize }, (_, index) => (
         <S.PaginationIconButton key={index} onClick={() => onPageChange(index)}>
@@ -51,10 +57,10 @@ const Pagination = ({ pageSize, currentPage, onPageChange }: IPagination) => {
         </S.PaginationIconButton>
       ))}
       <S.PaginationIconButton onClick={handleNextPage}>
-        <S.PaginationImg $imageURL="/assets/icons/icon-btn-chevron-right.svg" />
+        <NextPage fill={isDarkMode ? '#E2E2E2' : '#3B3B3B'} />
       </S.PaginationIconButton>
       <S.PaginationIconButton onClick={handleLastPage}>
-        <S.PaginationImg $imageURL="/assets/icons/icon-btn-last-page.svg" />
+        <LastPage fill={isDarkMode ? '#E2E2E2' : '#3B3B3B'} />
       </S.PaginationIconButton>
     </S.PaginationContainer>
   );

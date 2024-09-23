@@ -1,22 +1,19 @@
 import styled, { css } from 'styled-components';
 
 import { TYPO } from '@styles/typo';
-import { semantic } from '@styles/semantic';
 import { INTERACTION } from '@styles/interaction';
 
-export const SettingContainer = styled.div`
+export const SettingContainer = styled.div<{ isDarkMode: boolean }>`
   display: flex;
   flex-direction: column;
   align-items: center;
 
   min-width: 20rem;
 
-  background: linear-gradient(
-      180deg,
-      rgba(255, 255, 255, 0.3) 0%,
-      rgba(241, 241, 241, 0.3) 100%
-    ),
-    ${semantic.light.bg.solid.subtler};
+  background: ${({ isDarkMode }) =>
+    isDarkMode
+      ? 'linear-gradient(180deg, #2B2B2B 0%, #1B1B1B 100%)'
+      : 'linear-gradient(180deg, #fff 0%, #ebebeb 100%)'};
 `;
 
 export const ViewportContainer = styled.div`
@@ -49,14 +46,14 @@ export const UserNameText = styled.span`
   text-align: center;
 
   ${TYPO.title2};
-  color: ${semantic.light.object.solid.normal};
+  color: ${({ theme }) => theme.object.solid.normal};
 `;
 
 export const UserInfoText = styled.span`
   text-align: center;
 
   ${TYPO.body2};
-  color: ${semantic.light.object.transparent.neutral};
+  color: ${({ theme }) => theme.object.transparent.neutral};
 `;
 
 /* 잔디 컨테이너 */
@@ -80,15 +77,15 @@ export const GrassYearTagBox = styled.div`
   padding: 0.5rem 1rem;
 
   border-radius: 0.75rem;
-  border: 1px solid ${semantic.light.border.transparent.alternative};
-  background: ${semantic.light.fill.transparent.assistive};
+  border: ${({ theme }) => `1px solid ${theme.border.transparent.alternative}`};
+  background: ${({ theme }) => theme.fill.transparent.assistive};
 `;
 
 export const GrassYearText = styled.span`
   text-align: center;
 
   ${TYPO.label2};
-  color: ${semantic.light.object.transparent.alternative};
+  color: ${({ theme }) => theme.object.transparent.alternative};
 `;
 
 export const GrassContainer = styled.div`
@@ -162,10 +159,10 @@ export const DateBubbleBox = styled.div`
 
   ${TYPO.label1};
   text-align: center;
-  color: ${semantic.light.inverse.solid.normal};
+  color: ${({ theme }) => theme.inverse.solid.normal};
 
   border-radius: 0.75rem;
-  background: ${semantic.light.inverse.solid.bg};
+  background: ${({ theme }) => theme.inverse.solid.bg};
 
   box-shadow:
     0px 0px 2px 0px rgba(0, 0, 0, 0.06),
@@ -205,6 +202,7 @@ export const MainSection = styled.section`
   position: relative;
 
   max-width: 60rem;
+  min-height: 20.8rem;
   padding: 0rem 1.5rem 4.5rem 1.5rem;
 `;
 
@@ -230,8 +228,8 @@ export const SearchBox = styled.div`
   padding: 1rem 1.25rem;
 
   border-radius: 1rem;
-  border: 1px solid ${semantic.light.border.transparent.alternative};
-  background: ${semantic.light.bg.solid.normal};
+  border: ${({ theme }) => `1px solid ${theme.border.transparent.alternative}`};
+  background: ${({ theme }) => theme.bg.solid.normal};
 
   @media screen and (max-width: 60em) {
     padding: 0.625rem 1rem;
@@ -250,7 +248,7 @@ export const SearchInput = styled.input`
   width: 100%;
 
   ${TYPO.body2};
-  color: ${semantic.light.object.transparent.assistive};
+  color: ${({ theme }) => theme.object.transparent.assistive};
 
   border: none;
 
@@ -316,8 +314,8 @@ export const DiaryCardArticle = styled.article`
   padding: 1.25rem;
 
   border-radius: 1rem;
-  border: 1px solid ${semantic.light.border.transparent.assistive};
-  background: ${semantic.light.bg.solid.normal};
+  border: ${({ theme }) => `1px solid ${theme.border.transparent.assistive}`};
+  background: ${({ theme }) => theme.bg.solid.normal};
 
   box-shadow:
     0px 0px 1px 0px rgba(0, 0, 0, 0.04),
@@ -345,12 +343,12 @@ export const DiaryCardDateBox = styled.div`
 
 export const DiaryCardDateText = styled.span`
   ${TYPO.label1};
-  color: ${semantic.light.object.transparent.neutral};
+  color: ${({ theme }) => theme.object.transparent.neutral};
 `;
 
 export const DiaryCardTimeText = styled.small`
   ${TYPO.caption1};
-  color: ${semantic.light.object.transparent.assistive};
+  color: ${({ theme }) => theme.object.transparent.assistive};
 `;
 
 export const DiaryCardMoreBox = styled.div`
@@ -385,7 +383,7 @@ export const DiaryCardText = styled.span`
   text-overflow: ellipsis;
 
   ${TYPO.body2};
-  color: ${semantic.light.object.solid.normal};
+  color: ${({ theme }) => theme.object.solid.normal};
 `;
 
 export const DiaryCardBottomBox = styled.div`
@@ -417,8 +415,8 @@ export const HashtagBox = styled.div`
   padding: 0.25rem 0.625rem;
 
   border-radius: 0.5rem;
-  border: 1px solid ${semantic.light.border.transparent.alternative};
-  background: ${semantic.light.fill.transparent.assistive};
+  border: ${({ theme }) => `1px solid ${theme.border.transparent.alternative}`};
+  background: ${({ theme }) => theme.fill.transparent.assistive};
 `;
 
 export const HashtagImg = styled.img`
@@ -428,7 +426,7 @@ export const HashtagImg = styled.img`
 
 export const HashtagText = styled.span`
   ${TYPO.caption1};
-  color: ${semantic.light.object.transparent.alternative};
+  color: ${({ theme }) => theme.object.transparent.alternative};
 `;
 
 export const CommentFavoriteBox = styled.div`
@@ -448,7 +446,7 @@ export const DiaryCardItemBox = styled.div`
 
 export const DiaryCardItemText = styled.span`
   ${TYPO.label3};
-  color: ${semantic.light.object.transparent.assistive};
+  color: ${({ theme }) => theme.object.transparent.assistive};
 `;
 
 /* 페이지네이션 컴포넌트 */
@@ -499,8 +497,8 @@ export const HashtagAside = styled.aside`
   gap: 1rem;
 
   border-radius: 1rem;
-  border: 1px solid ${semantic.light.border.transparent.assistive};
-  background: ${semantic.light.bg.solid.normal};
+  border: ${({ theme }) => `1px solid ${theme.border.transparent.assistive}`};
+  background: ${({ theme }) => theme.bg.solid.normal};
 
   box-shadow:
     0px 0px 1px 0px rgba(0, 0, 0, 0.04),
@@ -516,7 +514,7 @@ export const HashtagListText = styled.span`
   height: 1.375rem;
 
   ${TYPO.label2};
-  color: ${semantic.light.object.solid.normal};
+  color: ${({ theme }) => theme.object.solid.normal};
 `;
 
 export const SideHashtagListBox = styled.ul`
@@ -553,13 +551,13 @@ export const SideHashtagList = styled.li`
 
 export const SideHashtagText = styled.span<{ $variant?: boolean }>`
   ${TYPO.label1};
-  color: ${semantic.light.object.solid.normal};
+  color: ${({ theme }) => theme.object.solid.normal};
   text-align: center;
 
   ${({ $variant }) => {
     if ($variant) {
       return css`
-        color: ${semantic.light.accent.solid.hero};
+        color: ${({ theme }) => theme.accent.solid.hero};
       `;
     }
   }}
@@ -567,5 +565,5 @@ export const SideHashtagText = styled.span<{ $variant?: boolean }>`
 
 export const SideHashtagUsageText = styled.span`
   ${TYPO.label1};
-  color: ${semantic.light.object.transparent.assistive};
+  color: ${({ theme }) => theme.object.transparent.assistive};
 `;

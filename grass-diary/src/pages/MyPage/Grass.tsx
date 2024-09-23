@@ -33,10 +33,11 @@ const createGrass: TCreateGrass = () => {
 };
 
 interface IGrass {
+  isDarkMode: boolean;
   setSelectedDiary: React.Dispatch<React.SetStateAction<IDiary[] | undefined>>;
 }
 
-const Grass = ({ setSelectedDiary }: IGrass) => {
+const Grass = ({ setSelectedDiary, isDarkMode }: IGrass) => {
   const memberId = useUser();
   const grassColors = useGrass(memberId);
   const { year, grass } = createGrass();
@@ -102,12 +103,18 @@ const Grass = ({ setSelectedDiary }: IGrass) => {
                     onMouseOut={() => handleGrassHover(null)}
                     $border={
                       !writeDay
-                        ? `1px solid ${semantic.light.accent.solid.normal}`
+                        ? isDarkMode
+                          ? `1px solid ${semantic.dark.accent.solid.normal}`
+                          : `1px solid ${semantic.light.accent.solid.normal}`
+                        : isDarkMode
+                        ? `1px solid ${semantic.dark.border.transparent.alternative}`
                         : `1px solid ${semantic.light.border.transparent.alternative}`
                     }
                     $background={
                       grassColors[writeDay]
                         ? `rgba(${grassColors[writeDay]})`
+                        : isDarkMode
+                        ? `${semantic.dark.fill.transparent.assistive}`
                         : `${semantic.light.fill.transparent.assistive}`
                     }
                   />

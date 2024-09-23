@@ -1,4 +1,3 @@
-import { semantic } from '@styles/semantic';
 import styled from 'styled-components';
 
 interface IDividerProps {
@@ -19,8 +18,6 @@ const DividerLine = styled.div<{
   width: ${({ $dividerWidth }) => $dividerWidth || '20rem'};
   height: 0.0625rem;
 
-  background: ${({ $dividerColor }) =>
-    $dividerColor
-      ? $dividerColor
-      : `${semantic.light.border.transparent.neutral}`};
+  background: ${({ $dividerColor, theme }) =>
+    $dividerColor ? $dividerColor : `${theme.border.transparent.neutral}`};
 `;
