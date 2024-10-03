@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { semantic } from '@styles/semantic';
 import { TYPO } from '@styles/typo';
 
 export const TopBox = styled.div`
@@ -26,7 +25,7 @@ export const ProfileImage = styled.img`
 
 export const NameText = styled.p`
   ${TYPO.label2}
-  color: ${semantic.light.object.solid.normal};
+  color: ${({ theme }) => theme.object.solid.normal};
 `;
 
 export const InputContainer = styled.div<{
@@ -44,8 +43,8 @@ export const InputContainer = styled.div<{
   border: var(--stroke-thin, 0.0625rem) solid
     ${props =>
       props.$focus
-        ? semantic.light.accent.solid.hero
-        : semantic.light.border.transparent.normal};
+        ? props.theme.accent.solid.hero
+        : props.theme.border.transparent.normal};
   ${props =>
     props.$isReply &&
     `box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.06), 0px 3px 6px 0px rgba(0, 0, 0, 0.11);`}
@@ -74,15 +73,18 @@ export const Input = styled.textarea`
   flex: 1 0 0;
 
   border: none;
+
   ${TYPO.body1}
-  caret-color: ${semantic.light.accent.solid.normal};
+  color: ${({ theme }) => theme.object.solid.normal};
+  caret-color: ${({ theme }) => theme.accent.solid.normal};
 
   &::placeholder,
   &::-webkit-input-placeholder {
-    color: ${semantic.light.object.transparent.assistive};
+    color: ${({ theme }) => theme.object.transparent.assistive};
   }
+
   &:-ms-input-placeholder {
-    color: ${semantic.light.object.transparent.assistive};
+    color: ${({ theme }) => theme.object.transparent.assistive};
   }
 `;
 
@@ -93,7 +95,7 @@ export const CancelButton = styled.button`
   text-align: center;
 
   ${TYPO.label1}
-  color: ${semantic.light.object.transparent.alternative};
+  color: ${({ theme }) => theme.object.transparent.alternative};
 `;
 
 export const SubmitButton = styled.button`
@@ -105,9 +107,9 @@ export const SubmitButton = styled.button`
   text-align: center;
 
   ${TYPO.label1}
-  color: ${semantic.light.accent.solid.normal};
+  color: ${({ theme }) => theme.accent.solid.normal};
 
   &:disabled {
-    color: ${semantic.light.object.transparent.disabled};
+    color: ${({ theme }) => theme.object.transparent.disabled};
   }
 `;

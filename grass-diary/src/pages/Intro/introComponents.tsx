@@ -5,12 +5,16 @@ import { useModal } from '@state/modal/useModal';
 import { checkAuth } from '@utils/authUtils';
 
 import * as S from '@styles/Intro/IntroStyles';
+import useTheme from '@hooks/useTheme';
+import useIsMobile from '@hooks/useIsMobile';
 import { Divider } from '@components/index';
 import { INTRO_MESSAGES } from '@constants/message';
-import useIsMobile from '@hooks/useIsMobile';
+import { ReactComponent as ScrollIcon } from '@svg/expand-more.svg';
+import { ReactComponent as RecordImage } from '@svg/banner_record.svg';
 
 const OpenModalButton = () => {
   const navigate: NavigateFunction = useNavigate();
+
   const { loginModal } = useModal();
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
 
@@ -45,6 +49,7 @@ const OpenModalButton = () => {
 
 const FirstSection = () => {
   const isMobile = useIsMobile();
+  const { isDarkMode } = useTheme();
 
   return (
     <>
@@ -64,7 +69,11 @@ const FirstSection = () => {
         <S.ScrollText>
           {INTRO_MESSAGES.firstSection.scrollMessage(isMobile)}
         </S.ScrollText>
-        <S.ScrollImg src="/assets/icons/expand-more.svg" />
+        <ScrollIcon
+          width={20}
+          height={20}
+          fill={isDarkMode ? '#D4D4D4' : '#474747'}
+        />
       </S.ScrollMessageContainer>
     </>
   );
@@ -72,6 +81,7 @@ const FirstSection = () => {
 
 const SecondSection = () => {
   const isMobile = useIsMobile();
+  const { isDarkMode } = useTheme();
 
   return (
     <S.CommonSection>
@@ -86,7 +96,7 @@ const SecondSection = () => {
             {INTRO_MESSAGES.secondSection.secondIntroduction(isMobile)}
           </S.CommonIntroductionText>
         </S.CommonTitleContainer>
-        <img src="/assets/img/banner_record.svg" />
+        <RecordImage fill={isDarkMode ? '#D4D4D4' : '#474747'} />
       </S.CommonArticle>
     </S.CommonSection>
   );

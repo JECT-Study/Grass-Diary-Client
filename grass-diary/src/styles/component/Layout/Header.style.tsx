@@ -11,12 +11,12 @@ export const FeedButton = styled.button`
   justify-content: center;
   align-items: center;
   border-radius: var(--radius-xs, 0.5rem);
-  color: ${semantic.light.object.solid.normal};
   text-align: center;
   white-space: nowrap;
-  ${TYPO.title1}
 
+  ${TYPO.title1}
   ${INTERACTION.default.normal()}
+  color: ${({ theme }) => theme.object.solid.normal};
 `;
 
 export const Header = styled.header`
@@ -27,9 +27,9 @@ export const Header = styled.header`
   justify-content: center;
   align-items: center;
 
-  border-bottom: var(--stroke-thin, 1px) solid
-    ${semantic.light.border.transparent.alternative};
-  background: ${semantic.light.bg.solid.subtlest};
+  border-bottom: ${({ theme }) => `var(--stroke-thin, 1px) solid
+    ${theme.border.transparent.alternative}`};
+  background: ${({ theme }) => theme.bg.solid.subtlest};
 
   @media screen and (max-width: 60em) {
     min-width: 20em;
@@ -66,7 +66,7 @@ export const LogoImage = styled.img`
 export const LogoIcon = styled(LogoSVG)`
   width: 4.47663rem;
   height: 1.125rem;
-  fill: ${semantic.light.object.solid.normal};
+  fill: ${({ theme }) => theme.object.solid.normal};
 `;
 
 export const MenuBarBox = styled.div`
@@ -82,10 +82,11 @@ export const LoginButton = styled.button`
   justify-content: center;
   align-items: center;
 
-  gap: var(--gap-2xs, 0.5rem);
-  color: ${semantic.light.base.solid.white};
-  border-radius: var(--radius-xs, 0.5rem);
-  background: ${semantic.light.accent.solid.normal};
   white-space: nowrap;
+  gap: var(--gap-2xs, 0.5rem);
+  border-radius: var(--radius-xs, 0.5rem);
+
+  color: ${({ theme }) => theme.base.solid.white};
+  background: ${({ theme }) => theme.accent.solid.normal};
   ${INTERACTION.default.normal(semantic.light.accent.solid.normal)}
 `;

@@ -1,15 +1,16 @@
 import * as S from '@styles/Main/BottomSection.style';
 import AnimateReward from './AnimateReward';
 
+import useTheme from '@hooks/useTheme';
 import { semantic } from '@styles/semantic';
 import { useReward } from '@hooks/api/useReward';
 import { useModal } from '@state/modal/useModal';
 import { MAIN_MESSAGES, MODAL } from '@constants/message';
 import { ReactComponent as Avatar } from '@svg/avatarBg.svg';
 import { ReactComponent as Arrow } from '@svg/chevron_right.svg';
-import { ReactComponent as ArrowBlack } from '@svg/chevron_right_black.svg';
 
 const BottomSection = () => {
+  const { isDarkMode } = useTheme();
   const { reward } = useReward();
   const { modal } = useModal();
 
@@ -66,7 +67,7 @@ const BottomSection = () => {
                   width={18}
                   height={18}
                   fill={semantic.light.accent.solid.hero}
-                ></Arrow>
+                />
               </S.ThemeMarketBtn>
             </S.Wrap>
           </S.Card>
@@ -83,7 +84,11 @@ const BottomSection = () => {
                 <S.RetrospectText>
                   {MAIN_MESSAGES.bottom_section.go_to_review}
                 </S.RetrospectText>
-                <ArrowBlack></ArrowBlack>
+                <Arrow
+                  width={18}
+                  height={18}
+                  fill={isDarkMode ? '#D4D4D4' : '#474747'}
+                />
               </S.RetrospectBtn>
             </S.RetrospectContainer>
           </S.Card>

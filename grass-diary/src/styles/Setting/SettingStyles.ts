@@ -1,5 +1,8 @@
 import styled, { css } from 'styled-components';
 
+import { ReactComponent as DarkTheme } from '@svg/darkTheme.svg';
+import { ReactComponent as LightTheme } from '@svg/lightTheme.svg';
+
 import { semantic } from '@styles/semantic';
 import { TYPO } from '@styles/typo';
 import { INTERACTION } from '@styles/interaction';
@@ -12,12 +15,7 @@ const SettingContainer = styled.main`
   min-width: 20rem;
   gap: 1.5rem;
 
-  background: linear-gradient(
-      180deg,
-      rgba(255, 255, 255, 0.3) 0%,
-      rgba(241, 241, 241, 0.3) 100%
-    ),
-    ${semantic.light.bg.solid.subtler};
+  background: ${({ theme }) => theme.bg.solid.subtler};
 `;
 
 const ContentContainer = styled.div`
@@ -110,7 +108,7 @@ const UserNameText = styled.span`
   text-align: center;
 
   ${TYPO.title2}
-  color: ${semantic.light.object.solid.normal};
+  color: ${({ theme }) => theme.object.solid.normal};
 `;
 
 const ProfileButtonBox = styled.div`
@@ -136,13 +134,13 @@ const ImageUploadButton = styled.button`
 
   border-radius: 0.5rem;
 
-  color: ${semantic.light.base.solid.white};
-  background: ${semantic.light.accent.solid.normal};
+  background: ${({ theme }) => theme.accent.solid.normal};
+  color: ${({ theme }) => theme.base.solid.white};
 
-  ${INTERACTION.default.normal(semantic.light.accent.solid.normal)}
+  ${INTERACTION.default.normal(semantic.light.accent.solid.normal)};
 `;
 
-const ImageDeleteButton = styled.button`
+const ImageDeleteButton = styled.button<{ isDarkMode: boolean }>`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -155,8 +153,9 @@ const ImageDeleteButton = styled.button`
 
   border-radius: 0.5rem;
 
-  color: ${semantic.light.base.solid.white};
-  background: ${semantic.light.object.solid.normal};
+  background: ${({ theme }) => theme.object.solid.normal};
+  color: ${({ theme, isDarkMode }) =>
+    isDarkMode ? theme.base.solid.black : theme.base.solid.white};
 
   ${INTERACTION.default.normal(semantic.light.object.solid.normal)}
 `;
@@ -206,7 +205,7 @@ const UserIntroductionBox = styled.div<{ isFocused: boolean }>`
   box-shadow:
     0px 0px 1px 0px rgba(0, 0, 0, 0.04),
     0px 2px 4px 0px rgba(0, 0, 0, 0.08);
-  background: ${semantic.light.bg.solid.normal};
+  background: ${({ theme }) => theme.bg.solid.normal};
 `;
 
 const UserIntroduction = styled.textarea`
@@ -219,10 +218,12 @@ const UserIntroduction = styled.textarea`
   resize: none;
   outline: none;
 
-  ${TYPO.caption2}
   overflow: hidden;
   text-overflow: ellipsis;
+
+  ${TYPO.caption2}
   color: ${semantic.light.object.transparent.neutral};
+  background: ${({ theme }) => theme.bg.solid.normal};
 `;
 
 const IntroductionCountText = styled.span`
@@ -317,12 +318,12 @@ const SettingLabel = styled.label`
   width: 7rem;
 
   ${TYPO.title1}
-  color: ${semantic.light.object.solid.normal};
+  color: ${({ theme }) => theme.object.solid.normal};
 `;
 
 const SettingText = styled.span`
   ${TYPO.label2}
-  color: ${semantic.light.object.solid.normal};
+  color: ${({ theme }) => theme.object.solid.normal};
 `;
 
 const AmendButton = styled.button`
@@ -343,7 +344,7 @@ const NicknameInput = styled.input`
 
   border-radius: 0.5rem;
   border: 1px solid ${semantic.light.border.transparent.alternative};
-  background: #fff;
+  background: ${({ theme }) => theme.bg.solid.normal};
 
   &:focus {
     border: 1px solid ${semantic.light.accent.solid.alternative};
@@ -383,7 +384,7 @@ const SettingMessage = styled.span`
   align-self: stretch;
 
   ${TYPO.caption1};
-  color: ${semantic.light.object.transparent.neutral};
+  color: ${({ theme }) => theme.object.transparent.neutral};
 `;
 
 const DividerLine = styled.div`
@@ -453,11 +454,72 @@ const ThemeSelectBox = styled.div`
   gap: 2.5rem 3rem;
 `;
 
-const ThemeImg = styled.img`
-  width: 6.5625rem;
-  height: 6.5625rem;
+const DarkThemeBox = styled.div<{ isDarkMode: boolean }>`
+  position: relative;
+
+  width: 7.125rem;
+  height: 7.125rem;
+
+  &::after {
+    content: '';
+    position: absolute;
+
+    top: 0.3rem;
+    right: -0.7rem;
+
+    width: 3rem;
+    height: 3rem;
+
+    pointer-events: none;
+
+    background-image: url('../../../public/assets/icons/checkTheme.svg');
+    background-repeat: no-repeat;
+
+    opacity: ${({ isDarkMode }) => (isDarkMode ? 1 : 0)};
+  }
+`;
+
+const LightThemeBox = styled.div<{ isDarkMode: boolean }>`
+  position: relative;
+
+  width: 7.125rem;
+  height: 7.125rem;
+
+  &::after {
+    content: '';
+    position: absolute;
+
+    top: 0.3rem;
+    right: -0.7rem;
+
+    width: 3rem;
+    height: 3rem;
+
+    pointer-events: none;
+
+    background-image: url('../../../public/assets/icons/checkTheme.svg');
+    background-repeat: no-repeat;
+
+    opacity: ${({ isDarkMode }) => (isDarkMode ? 0 : 1)};
+  }
+`;
+
+const DarkThemeImg = styled(DarkTheme)<{ isDarkMode: boolean }>`
+  width: 7.125rem;
+  height: 7.125rem;
 
   cursor: pointer;
+
+  stroke: ${({ isDarkMode }) => (isDarkMode ? '#00B478' : '#D4D4D4')};
+`;
+
+const LightThemeImg = styled(LightTheme)<{ isDarkMode: boolean }>`
+  width: 7.125rem;
+  height: 7.125rem;
+
+  cursor: pointer;
+
+  stroke: ${({ isDarkMode }) => (isDarkMode ? '#D4D4D4' : '#00B478')};
 `;
 
 const WithdrawBoxArticle = styled.article`
@@ -574,7 +636,10 @@ export {
   ThemeContainer,
   ThemeMessageBox,
   ThemeSelectBox,
-  ThemeImg,
+  DarkThemeBox,
+  LightThemeBox,
+  DarkThemeImg,
+  LightThemeImg,
   WithdrawBoxArticle,
   WithdrawBox,
   WithdrawButton,

@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { semantic } from '@styles/semantic';
 import { TYPO } from '@styles/typo';
 
 export const Container = styled.div`
@@ -10,16 +9,15 @@ export const Container = styled.div`
   gap: var(--gap-2xs, 0.5rem);
 
   border-radius: var(--radius-xs, 0.5rem);
-  border: var(--stroke-thin, 0.0625rem) solid
-    ${semantic.light.border.transparent.alternative};
+  border: ${({ theme }) => `var(--stroke-thin, 0.0625rem) solid
+    ${theme.border.transparent.alternative}`};
 
-  background: ${semantic.light.fill.transparent.assistive};
+  background: ${({ theme }) => theme.fill.transparent.assistive};
 `;
 
 export const Text = styled.p`
-  color: ${semantic.light.object.transparent.alternative};
-
   ${TYPO.caption2}
+  color: ${({ theme }) => theme.object.transparent.alternative};
 
   @media screen and (max-width: 60em) {
     ${TYPO.caption1}

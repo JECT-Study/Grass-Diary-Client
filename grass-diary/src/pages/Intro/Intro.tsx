@@ -1,4 +1,5 @@
 import * as S from '@styles/Intro/IntroStyles';
+import useTheme from '@hooks/useTheme';
 import {
   FirstSection,
   LastSection,
@@ -7,8 +8,10 @@ import {
 } from './introComponents';
 
 const Intro = () => {
+  const { isDarkMode } = useTheme();
+
   return (
-    <S.IntroContainer>
+    <S.IntroContainer isDarkMode={isDarkMode}>
       <FirstSection />
       <SecondSection />
       <ThirdSection />

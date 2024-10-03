@@ -128,7 +128,7 @@ export const SETTING_MESSAGES = {
   label: {
     nickname: '닉네임',
     email: '이메일 주소',
-    theme: '테마',
+    theme: '테마 변경',
     withdraw: '회원 탈퇴',
   },
   message: {
@@ -255,4 +255,3 @@ export const SNACKBAR = {
     page: '/rewardpage',
   },
 } as const;
-

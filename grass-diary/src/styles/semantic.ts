@@ -115,7 +115,7 @@ export const semantic = {
     inverse: {
       solid: {
         accent: '#00A66E' as HexColor,
-        negative: '#F17961' as HexColor,
+        negative: '#D93526' as HexColor,
         hero: '#ffffff' as HexColor,
         normal: '#E2E2E2' as HexColor,
         bg: '#2B2B2B' as HexColor,

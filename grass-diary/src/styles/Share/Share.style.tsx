@@ -1,18 +1,17 @@
 import styled from 'styled-components';
-import { semantic } from '@styles/semantic';
 import { TYPO } from '@styles/typo';
 
 export const Layout = styled.div`
   min-height: 100vh;
   min-height: 100dvh;
-  background: ${semantic.light.bg.solid.subtler};
+  background: ${({ theme }) => theme.bg.solid.subtler};
 `;
 
 export const Title = styled.h2`
   display: none;
   @media screen and (max-width: 60em) {
     display: block;
-    color: ${semantic.light.object.transparent.neutral};
+    color: ${({ theme }) => theme.object.transparent.neutral};
     text-align: center;
     ${TYPO.title1}
   }

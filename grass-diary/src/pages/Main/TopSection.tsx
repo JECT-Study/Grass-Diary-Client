@@ -5,8 +5,10 @@ import { useTodayQuestion } from '@hooks/api/useTodayQuestion';
 import { MAIN_MESSAGES } from '@constants/message';
 import { ReactComponent as EditNote } from '@svg/edit_note.svg';
 import { ReactComponent as EventNote } from '@svg/event_note.svg';
+import useTheme from '@hooks/useTheme';
 
 const TopSection = () => {
+  const { isDarkMode } = useTheme();
   // 질문 데이터를 가져오는 쿼리
   const { question } = useTodayQuestion();
   // 날짜 데이터를 가져오는 쿼리
@@ -47,7 +49,7 @@ const TopSection = () => {
             <Link to="/mypage">
               <S.MydiaryTxt>{MAIN_MESSAGES.top_section.my_diary}</S.MydiaryTxt>
             </Link>
-            <EventNote />
+            <EventNote fill={isDarkMode ? '#D4D4D4' : '#474747'} />
           </S.MydiaryBtn>
         </S.ButtonContainer>
       </S.Container>

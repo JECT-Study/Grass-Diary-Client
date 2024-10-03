@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { semantic } from '@styles/semantic';
 import { TYPO } from '@styles/typo';
 
 export const Container = styled.div`
@@ -16,17 +15,17 @@ export const Container = styled.div`
 `;
 
 export const TodayDateBox = styled.div`
-  color: ${semantic.light.object.transparent.neutral};
   text-align: center;
 
   ${TYPO.label3}
+  color: ${({ theme }) => theme.object.transparent.neutral};
 `;
 
 export const DailyQuestionText = styled.p`
-  color: ${semantic.light.object.solid.hero};
   text-align: center;
 
   ${TYPO.display1}
+  color: ${({ theme }) => theme.object.solid.hero};
 
   @media screen and (max-width: 60em) {
     ${TYPO.title3}
@@ -41,22 +40,23 @@ export const ButtonContainer = styled.div`
 
 export const CreateDiaryBtn = styled.button`
   display: flex;
-  padding: 0.75rem 1rem;
-  justify-content: center;
   align-items: center;
-  gap: 0.5rem;
+  justify-content: center;
 
+  gap: 0.5rem;
+  padding: 0.75rem 1rem;
+
+  border: none;
   border-radius: 0.75rem;
 
-  background: ${semantic.light.accent.solid.normal};
-  border: none;
+  background: ${({ theme }) => theme.accent.solid.normal};
 `;
 
 export const CreateDiaryText = styled.p`
-  color: ${semantic.light.base.solid.white};
   text-align: center;
 
   ${TYPO.label3}
+  color: ${({ theme }) => theme.base.solid.white};
 `;
 
 export const MydiaryBtn = styled.button`
@@ -67,14 +67,15 @@ export const MydiaryBtn = styled.button`
   gap: 0.5rem;
 
   border-radius: 0.75rem;
-  border: 0.0625rem solid ${semantic.light.border.transparent.alternative};
+  border: ${({ theme }) =>
+    `0.0625rem solid ${theme.border.transparent.alternative}`};
 
-  background: ${semantic.light.bg.solid.normal};
+  background: ${({ theme }) => theme.bg.solid.normal};
 `;
 
 export const MydiaryTxt = styled.p`
-  color: ${semantic.light.object.transparent.alternative};
   text-align: center;
 
   ${TYPO.label3}
+  color: ${({ theme }) => theme.object.transparent.alternative};
 `;
