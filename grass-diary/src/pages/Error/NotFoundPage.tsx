@@ -3,6 +3,7 @@ import Header from '@components/Layout/Header';
 import useIsMobile from '@hooks/useIsMobile';
 import * as S from '@styles/Error/NotFoundPage.style';
 import { semantic } from '@styles/semantic';
+import errorIcon from '@svg/error_outline.svg';
 import { ReactComponent as Arrow } from '@svg/chevron_right.svg';
 import { useNavigate } from 'react-router-dom';
 
@@ -17,7 +18,7 @@ const NotFoundPage = () => {
       <Header />
       <S.Container>
         <S.ErrorSection>
-          <img src="../src/assets/svg/error_outline.svg" alt="error_image" />
+          <img src={errorIcon} alt="error_image" />
           <S.ErrorTextBox>
             <S.HeaderText>
               페이지를{isMobile ? <br /> : ' '}찾을 수 없어요

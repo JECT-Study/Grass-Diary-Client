@@ -44,7 +44,7 @@ const RewardPage = () => {
           <S.RewardSection>
             <S.RewardContainer>
               <S.GrassCountBox>
-                <img src="../src/assets/image/pot.png" alt="image" />
+                <img src="/assets/image/pot.png" alt="image" />
                 <S.CountText>{grassQuery?.totalCount}</S.CountText>
                 <S.CountCaptionText>내가 심은 잔디</S.CountCaptionText>
               </S.GrassCountBox>
