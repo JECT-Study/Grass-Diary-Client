@@ -3,6 +3,7 @@ import setting from '@svg/settings.svg';
 import logout from '@svg/logout.svg';
 import arrow from '@svg/arrow_drop_down.svg';
 import useLogout from '@hooks/useLogout';
+import history from '@svg/history.svg';
 import { useQueryClient } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
 import { Menus, Menu } from '@components/index';
@@ -23,6 +24,11 @@ const MenuBar = () => {
           onClick={() => navigate('/mypage')}
           text={'마이페이지'}
           svg={person}
+        />
+        <Menu
+          onClick={() => navigate('/rewardpage')}
+          text={'리워드 내역'}
+          svg={history}
           line={0.25}
         />
         <Menu

@@ -60,9 +60,10 @@ export const InputBox = styled.div`
 `;
 
 export const Input = styled.textarea`
+  min-height: 1.75rem !important;
+  overflow: hidden;
   resize: none;
   background: inherit;
-  height: auto;
 
   &:focus {
     outline: none;

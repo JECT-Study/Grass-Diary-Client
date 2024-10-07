@@ -24,7 +24,9 @@ const Menus = ({ children, icon }: MenusProps) => {
       }
     };
 
-    document.addEventListener('click', closeMenus);
+    if (open) {
+      document.addEventListener('click', closeMenus);
+    }
 
     return () => document.removeEventListener('click', closeMenus);
   }, [open]);

@@ -1,193 +1,138 @@
-import stylex from '@stylexjs/stylex';
-import { Button, Container } from '@components/index';
-import Swal from 'sweetalert2';
-import subCharacter from '@icon/subCharacter.png';
-
-const RewardPageStyle = stylex.create({
-  titleBanner: {
-    backgroundColor: 'rgb(221, 223, 224)',
-    padding: '40px',
-    width: '100vw',
-
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  title: {
-    width: {
-      default: '1105px',
-      '@media (max-width: 1139px)': '95vw',
-    },
-  },
-
-  rewardInfoContainer: {
-    display: 'flex',
-    justifyContent: 'space-around',
-    alignItems: 'center',
-    width: {
-      default: '1105px',
-      '@media (max-width: 1139px)': '95vw',
-    },
-    gap: '900px',
-    paddingTop: '20px',
-  },
-  rewardInfoItem: {
-    display: 'flex',
-    gap: '30px',
-  },
-
-  line: {
-    borderBottom: '1px solid rgb(221, 223, 224)',
-    width: '1105px',
-    paddingTop: '20px',
-  },
-
-  rewardListContainer: {
-    display: 'flex',
-    flexDirection: 'column',
-    width: {
-      default: '1105px',
-      '@media (max-width: 1139px)': '95vw',
-    },
-  },
-  rewardListMonth: {
-    fontWeight: 'bold',
-    fontSize: '20px',
-    padding: '20px 0px 30px 0px',
-  },
-  rewardListContent: {
-    display: 'flex',
-    alignItems: 'center',
-    gap: '30px',
-  },
-  rewardListBox: {
-    display: 'flex',
-    flexDirection: 'column',
-    padding: '5px',
-  },
-  rewardListLine: {
-    borderBottom: '1px solid rgb(221, 223, 224)',
-    width: '1105px',
-    padding: '5px',
-  },
-  rewardListDate: {
-    color: '#8a8f95',
-  },
-  rewardListPoint: {
-    fontSize: '20px',
-    fontWeight: 'bold',
-  },
-});
+import * as S from '@styles/RewardPage/RewardPage.style';
+import { semantic } from '@styles/semantic';
+import { ReactComponent as Avatar } from '@svg/avatarBg.svg';
+import { ReactComponent as Arrow } from '@svg/chevron_right.svg';
+import { useReward } from '@hooks/api/useReward';
+import { useGrassRecord } from '@hooks/api/useGrassRecord';
+import { useRewardHistory } from '@hooks/api/useRewardHistory';
+import { Link } from 'react-router-dom';
 
 const RewardPage = () => {
-  const modal = () => {
-    Swal.fire({
-      title: '테마 상점',
-      text: '테마 상점 준비중이에요',
-      imageUrl: subCharacter,
-      imageWidth: 300,
-      imageHeight: 300,
-      imageAlt: 'Custom image',
-      confirmButtonColor: '#28CA3B',
-      confirmButtonText: '확인',
-    });
-  };
+  const { reward } = useReward();
+  const { grassQuery } = useGrassRecord();
+  const { history } = useRewardHistory();
+
+  const groupedHistory: GroupedHistory | undefined = history?.reduce(
+    (acc: GroupedHistory, rewardHistory: RewardHistory) => {
+      const [date] = rewardHistory.rewardedDate.split(' ');
+      const [year, month] = date.split('-');
+
+      const key = `${year}-${month}`;
+      if (!acc[key]) {
+        acc[key] = {
+          year,
+          month: parseInt(month, 10),
+          records: [],
+        };
+      }
+      acc[key].records.push(rewardHistory);
+      return acc;
+    },
+    {} as GroupedHistory,
+  );
 
   return (
-    <Container>
-      <section {...stylex.props(RewardPageStyle.titleBanner)}>
-        <p
-          style={{ fontSize: '30px', fontWeight: 'bold' }}
-          {...stylex.props(RewardPageStyle.title)}
-        >
-          리워드 내역
-        </p>
-        <p {...stylex.props(RewardPageStyle.title)}>
-          내가 쌓은 포인트를 확인 할 수 있어요
-        </p>
-      </section>
-      <section {...stylex.props(RewardPageStyle.rewardInfoContainer)}>
-        <article {...stylex.props(RewardPageStyle.rewardInfoItem)}>
-          <div>
-            <p>잔디</p>
-            <div
-              style={{
-                display: 'flex',
-                fontWeight: 'bold',
-                fontSize: '20px',
-                paddingTop: '5px',
-              }}
-            >
-              <img
-                src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Animals/Seedling.png"
-                alt="Seedling"
-                width="20"
-                height="20"
-              />
-              <p>55</p>
-            </div>
-          </div>
-          <div>
-            <p>리워드</p>
-            <div
-              style={{
-                display: 'flex',
-                fontWeight: 'bold',
-                fontSize: '20px',
-                paddingTop: '5px',
-              }}
-            >
-              <img
-                src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Activities/Party%20Popper.png"
-                alt="Party Popper"
-                width="20"
-                height="20"
-              />
-              <p>123</p>
-            </div>
-          </div>
-        </article>
-        <Button
-          text="테마 상점"
-          width="110px"
-          defaultColor="#2d2d2d"
-          hoverColor="#FFF"
-          defaultBgColor="#FFFFFF"
-          hoverBgColor="#111111"
-          border="1px solid #929292"
-          onClick={modal}
-        />
-      </section>
-      <span {...stylex.props(RewardPageStyle.line)}></span>
-      <section {...stylex.props(RewardPageStyle.rewardListContainer)}>
-        <p {...stylex.props(RewardPageStyle.rewardListMonth)}>2024 5월</p>
+    <>
+      <S.Background>
+        <S.Layout>
+          <S.TitleContainer>
+            <S.RewardTitle>리워드 내역</S.RewardTitle>
+            <S.RewardSubTitle>
+              내가 쌓은 포인트를 확인할 수 있어요
+            </S.RewardSubTitle>
+          </S.TitleContainer>
+          <S.RewardSection>
+            <S.RewardContainer>
+              <S.GrassCountBox>
+                <img src="../src/assets/image/pot.png" alt="image" />
+                <S.CountText>{grassQuery?.totalCount}</S.CountText>
+                <S.CountCaptionText>내가 심은 잔디</S.CountCaptionText>
+              </S.GrassCountBox>
+              <S.GrassRewardBox>
+                <Avatar />
+                <S.TotalRewardText>{reward.rewardPoint}</S.TotalRewardText>
+                <S.TotalRewardCaptionText>
+                  내 잔디 리워드
+                </S.TotalRewardCaptionText>
+              </S.GrassRewardBox>
+            </S.RewardContainer>
+            <Link to="/themepage">
+              <S.ThemeBtn>
+                <S.ThemeBtnText>테마 상점</S.ThemeBtnText>
+                <Arrow
+                  width={18}
+                  height={18}
+                  fill={semantic.light.accent.solid.hero}
+                />
+              </S.ThemeBtn>
+            </Link>
+          </S.RewardSection>
+          <S.HistorySection>
+            <S.DayContainer>
+              <S.DayBox>
+                <S.DayTextBox>
+                  <S.DayText>날짜</S.DayText>
+                </S.DayTextBox>
+                <S.GetRewardText>획득 리워드</S.GetRewardText>
+              </S.DayBox>
+              <S.DividerBox>
+                <S.Divider />
+              </S.DividerBox>
+            </S.DayContainer>
 
-        <div {...stylex.props(RewardPageStyle.rewardListBox)}>
-          <div {...stylex.props(RewardPageStyle.rewardListContent)}>
-            <p {...stylex.props(RewardPageStyle.rewardListDate)}>5월 15일</p>
-            <p {...stylex.props(RewardPageStyle.rewardListPoint)}>🔥 +10</p>
-          </div>
-          <span {...stylex.props(RewardPageStyle.rewardListLine)}></span>
-        </div>
-
-        <div {...stylex.props(RewardPageStyle.rewardListBox)}>
-          <div {...stylex.props(RewardPageStyle.rewardListContent)}>
-            <p {...stylex.props(RewardPageStyle.rewardListDate)}>5월 15일</p>
-            <p {...stylex.props(RewardPageStyle.rewardListPoint)}>🔥 +10</p>
-          </div>
-          <span {...stylex.props(RewardPageStyle.rewardListLine)}></span>
-        </div>
-
-        <div {...stylex.props(RewardPageStyle.rewardListBox)}>
-          <div {...stylex.props(RewardPageStyle.rewardListContent)}>
-            <p {...stylex.props(RewardPageStyle.rewardListDate)}>5월 15일</p>
-            <p {...stylex.props(RewardPageStyle.rewardListPoint)}>🔥 +10</p>
-          </div>
-          <span {...stylex.props(RewardPageStyle.rewardListLine)}></span>
-        </div>
-      </section>
-    </Container>
+            {groupedHistory &&
+              Object.values(groupedHistory)
+                .slice()
+                .reverse()
+                .map(
+                  (group: {
+                    year: string;
+                    month: number;
+                    records: RewardHistory[];
+                  }) => (
+                    <S.RewardListContainer key={`${group.year}-${group.month}`}>
+                      <S.HistoryYearMonthTextBox>
+                        <S.HistoryYearMonthText>
+                          {`${group.year}년 ${group.month}월`}
+                        </S.HistoryYearMonthText>
+                      </S.HistoryYearMonthTextBox>
+                      <S.RewardListBox>
+                        {group.records
+                          .slice()
+                          .reverse()
+                          .map(rewardHistory => {
+                            const [date] =
+                              rewardHistory.rewardedDate.split(' ');
+                            const [, , day] = date.split('-');
+                            return (
+                              <S.RewardList key={rewardHistory.historyId}>
+                                <S.RewardDate>
+                                  <S.RewardDateText>
+                                    {`${group.month}월 ${parseInt(day, 10)}일`}
+                                  </S.RewardDateText>
+                                </S.RewardDate>
+                                <S.RewardPoint>
+                                  <Avatar />
+                                  <S.RewardPointText>
+                                    {rewardHistory.rewardPoint < 0
+                                      ? rewardHistory.rewardPoint
+                                      : `+${rewardHistory.rewardPoint}`}
+                                  </S.RewardPointText>
+                                </S.RewardPoint>
+                              </S.RewardList>
+                            );
+                          })}
+                      </S.RewardListBox>
+                      <S.DividerBox>
+                        <S.Divider />
+                      </S.DividerBox>
+                    </S.RewardListContainer>
+                  ),
+                )}
+          </S.HistorySection>
+        </S.Layout>
+      </S.Background>
+    </>
   );
 };
 

@@ -57,13 +57,38 @@ export const TimeText = styled.p`
   color: ${semantic.light.object.transparent.assistive};
 `;
 
-export const ContentBox = styled.div<{
+export const ContentText = styled.p<{
   $isReply?: boolean;
 }>`
   ${TYPO.body1}
   ${props => props.$isReply && `padding-left: var(--gap-2xl, 2rem);`}
   color: ${semantic.light.object.solid.normal};
-  white-space: pre;
+  word-break: break-word;
+  flex: 1 0 0;
+`;
+
+export const BottomBox = styled.div`
+  display: flex;
+  align-items: flex-end;
+  gap: var(--gap-md, 1rem);
+  align-self: stretch;
+`;
+
+export const ReplyButton = styled.button`
+  display: flex;
+  padding: var(--gap-3xs, 0.375rem) var(--gap-xs, 0.625rem);
+  justify-content: center;
+  align-items: center;
+  gap: var(--gap-2xs, 0.5rem);
+
+  border-radius: var(--radius-xs, 0.5rem);
+  border: var(--stroke-thin, 1px) solid
+    ${semantic.light.border.transparent.alternative};
+
+  background: ${semantic.light.bg.solid.normal};
+  color: ${semantic.light.object.transparent.alternative};
+  text-align: center;
+  ${TYPO.label1}
 `;
 
 export const DeletedText = styled.p`

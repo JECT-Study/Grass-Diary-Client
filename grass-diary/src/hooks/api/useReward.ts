@@ -4,9 +4,11 @@ import API from '@services/index';
 import { useQuery } from '@tanstack/react-query';
 import { useUser } from '@state/user/useUser';
 import { AxiosError } from 'axios';
+import { useError } from '@hooks/useError';
 
 export const useReward = () => {
   const memberId = useUser();
+  const { renderErrorPage } = useError();
 
   const fetchUseReward = async (): Promise<RewardPointResponse> => {
     const res = await API.get(END_POINT.total_reward(memberId));
@@ -19,7 +21,7 @@ export const useReward = () => {
     error,
   } = useQuery<
     RewardPointResponse,
-    AxiosError,
+    AxiosError<ApiErrorResponse>,
     RewardPointResponse,
     [string, number | undefined]
   >({
@@ -29,7 +31,10 @@ export const useReward = () => {
     enabled: !!memberId,
   });
 
-  if (isError) console.error(CONSOLE_ERROR.reward.get + error.message);
+  if (isError) {
+    console.error(CONSOLE_ERROR.reward.get + error.message);
+    renderErrorPage(error);
+  }
 
   return { reward };
 };

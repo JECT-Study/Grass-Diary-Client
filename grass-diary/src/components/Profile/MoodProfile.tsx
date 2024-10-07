@@ -34,6 +34,9 @@ const EmojiBox = styled.div`
   justify-content: center;
   align-items: center;
 
+  width: 2rem;
+  height: 2rem;
+
   padding: 0.125rem;
 
   border-radius: 6rem;
@@ -42,13 +45,6 @@ const EmojiBox = styled.div`
 `;
 
 const EmojiText = styled.span`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-
-  width: 1.5rem;
-  height: 1.5rem;
-
   text-align: center;
 
   ${TYPO.title2}

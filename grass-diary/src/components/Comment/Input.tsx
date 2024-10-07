@@ -1,5 +1,5 @@
 import * as S from '@styles/component/Comment/Input.style';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import { useParamsId } from '@hooks/useParamsId';
 import { useUser } from '@state/user/useUser';
@@ -18,10 +18,10 @@ const CommentInput = ({
   isCancelBtn,
   isPatch,
 }: CommentInputProps) => {
+  const textareaRef = useRef<HTMLTextAreaElement>(null);
   const { profileImageURL, nickname } = useProfile();
   const { resetEditId, resetReplyId } = useCommentActions();
   const [focus, setFocus] = useState(false);
-  const [rows, setRows] = useState(1);
 
   // focus 될 때
   const onFocus = () => setFocus(true);
@@ -31,7 +31,6 @@ const CommentInput = ({
 
   const commentHandler = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setText(e.target.value);
-    setRows(e.target.value.split('\n').length);
   };
 
   const cancel = () => {
@@ -41,12 +40,13 @@ const CommentInput = ({
 
   const submitBtn = (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
     submit(e);
-    setRows(1);
   };
 
   useEffect(() => {
-    if (text) {
-      setRows(text.split('\n').length);
+    if (textareaRef.current) {
+      textareaRef.current.style.height = 'auto';
+      textareaRef.current.style.height =
+        textareaRef.current.scrollHeight + 'px';
     }
   }, [text]);
 
@@ -61,7 +61,8 @@ const CommentInput = ({
       </S.TopBox>
       <S.InputBox>
         <S.Input
-          rows={rows}
+          rows={1}
+          ref={textareaRef}
           value={text}
           onFocus={onFocus}
           onBlur={onBlur}

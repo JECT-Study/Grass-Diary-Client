@@ -9,6 +9,7 @@ const useLogout = () => {
 
   const clearAuth = () => {
     localStorage.removeItem('accessToken');
+    localStorage.setItem('manualLogout', 'true');
     setIsAuthenticated(false);
     setMemberId(0);
 

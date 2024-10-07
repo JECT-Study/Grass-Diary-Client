@@ -2,6 +2,7 @@ import API from '@services/index';
 import { END_POINT } from '@constants/api';
 import { useMutation } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
+import { AxiosError } from 'axios';
 
 interface PatchAxiosProps {
   diaryId: Id;
@@ -17,12 +18,9 @@ export const usePatchDiary = (diaryId: Id) => {
 
   return useMutation({
     mutationFn: (request: DiaryRequest) => fetchAxios({ diaryId, request }),
-    onSuccess() {
+    onSuccess: () => {
       navigate(`/diary/${diaryId}`, { replace: true, state: 'editcomplete' });
       localStorage.removeItem('diary_draft');
-    },
-    onError(error) {
-      console.error(error.response.data.description);
     },
   });
 };

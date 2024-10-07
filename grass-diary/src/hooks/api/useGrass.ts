@@ -2,6 +2,8 @@ import { useQuery } from '@tanstack/react-query';
 import { formatDate } from '@utils/dateUtils';
 import API from '@services/index';
 import { CONSOLE_ERROR } from '@constants/message';
+import { AxiosError } from 'axios';
+import { useError } from '@hooks/useError';
 
 interface IGrassList {
   createdAt: string;
@@ -11,9 +13,15 @@ interface IGrassList {
 type TUpdatedGrassColor = { [key: string]: string };
 
 const useGrass = (memberId: Id) => {
-  const { data: grass } = useQuery<
+  const { renderErrorPage } = useError();
+
+  const {
+    data: grass,
+    isError,
+    error,
+  } = useQuery<
     TUpdatedGrassColor,
-    Error,
+    AxiosError<ApiErrorResponse>,
     TUpdatedGrassColor,
     (string | number | null)[]
   >({
@@ -36,8 +44,12 @@ const useGrass = (memberId: Id) => {
         return updatedGrassColor;
       }),
     enabled: !!memberId,
-    onError: error => console.error(CONSOLE_ERROR.grass.get + error),
   });
+
+  if (isError) {
+    console.error(CONSOLE_ERROR.grass.get + error);
+    renderErrorPage(error);
+  }
 
   return grass;
 };

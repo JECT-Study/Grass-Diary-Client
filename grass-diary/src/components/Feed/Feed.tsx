@@ -21,7 +21,7 @@ const Feed = ({ feed, isTop }: IFeedProps) => {
   const navigate = useNavigate();
   const memberId = useUser();
   const { data: writer } = useWriterProfile(feed.memberId);
-  const { modal } = useModal();
+  const { modal, loginModal } = useModal();
 
   const title =
     `${feed.createdAt.slice(2, 4)}년 ` +
@@ -56,7 +56,7 @@ const Feed = ({ feed, isTop }: IFeedProps) => {
     const button2 = {
       active: true,
       text: MODAL.login_induce.button,
-      clickHandler: handleGoogleLogin,
+      clickHandler: loginModal,
       color: semantic.light.accent.solid.hero,
       interaction: INTERACTION.accent.subtle(),
     };

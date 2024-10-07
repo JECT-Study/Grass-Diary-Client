@@ -61,8 +61,9 @@ const CreateDiary = () => {
   const [image, setImage] = useState<ImageInfo>({
     imageId: 0,
     imageURL: '',
-    name: '',
-    size: '',
+    imageName: '',
+    imageSize: 0,
+    imageType: '',
   });
 
   // 임시 저장 모달
@@ -93,8 +94,9 @@ const CreateDiary = () => {
         setImage({
           imageId: 0,
           imageURL: '',
-          name: '',
-          size: '',
+          imageName: '',
+          imageSize: 0,
+          imageType: '',
         });
       },
     };
@@ -213,18 +215,13 @@ const CreateDiary = () => {
     }
   };
 
-  const checkWritingPermission = () => {
-    const lastWritingDate = localStorage.getItem('lastWritingDate');
-    const currentDate = `${diaryInfo.year}년/${diaryInfo.month}월/${diaryInfo.date}일`;
-    return lastWritingDate !== currentDate;
-  };
-
   const removeImage = () => {
     setImage({
       imageId: 0,
       imageURL: '',
-      name: '',
-      size: '',
+      imageName: '',
+      imageSize: 0,
+      imageType: '',
     });
   };
 
@@ -232,14 +229,9 @@ const CreateDiary = () => {
     if (isContentEmpty) return; // 일기 내용이 비어 있으면 저장 요청 불가
     const { quillContent, isPrivate, hashArr, moodValue } = diaryInfo;
 
-    if (!checkWritingPermission()) {
-      toast(CREATE_MESSAGES.toast.already_written);
-      return;
-    }
-
     // 사용자가 이미지를 첨부할 경우 postImage -> createDiary 실행
     if (image.imageURL) {
-      postImage(image.imageURL, {
+      postImage(image, {
         onSuccess: res => {
           const request = {
             content: quillContent,
@@ -255,9 +247,6 @@ const CreateDiary = () => {
               localStorage.removeItem('diary_draft');
               const currentDate = `${diaryInfo.year}년/${diaryInfo.month}월/${diaryInfo.date}일`;
               localStorage.setItem('lastWritingDate', currentDate);
-            },
-            onError: error => {
-              console.error(error);
             },
           });
         },
@@ -277,9 +266,6 @@ const CreateDiary = () => {
           localStorage.removeItem('diary_draft');
           const currentDate = `${diaryInfo.year}년/${diaryInfo.month}월/${diaryInfo.date}일`;
           localStorage.setItem('lastWritingDate', currentDate);
-        },
-        onError: error => {
-          console.error(error);
         },
       });
     }
@@ -345,6 +331,23 @@ const CreateDiary = () => {
       document.removeEventListener('keydown', handleKeyDown);
     };
   }, [diaryInfo]);
+
+  // 자동 임시 저장
+  useEffect(() => {
+    const autoSave = 60000;
+
+    const autoSaveDraft = () => {
+      if (!isContentEmpty) {
+        handleSaveDraft();
+      }
+    };
+
+    const saveDataTime = setInterval(autoSaveDraft, autoSave);
+
+    return () => {
+      clearInterval(saveDataTime);
+    };
+  }, [diaryInfo, isContentEmpty]);
 
   return (
     <>
@@ -425,8 +428,8 @@ const CreateDiary = () => {
                 <S.Image>
                   <img src={image.imageURL} alt="image file" />
                 </S.Image>
-                <S.ImageName>{image.name}</S.ImageName>
-                <S.ImageData>{image.size} KB</S.ImageData>
+                <S.ImageName>{image.imageName}</S.ImageName>
+                <S.ImageData>{image.imageSize} KB</S.ImageData>
                 <button onClick={removeImage}>
                   <S.ImageDelete>
                     <Close width={16} height={16} />

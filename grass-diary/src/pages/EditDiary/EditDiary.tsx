@@ -59,8 +59,9 @@ const EditDiary = () => {
   const [image, setImage] = useState<ImageInfo>({
     imageId: 0,
     imageURL: '',
-    name: '',
-    size: '',
+    imageName: '',
+    imageSize: 0,
+    imageType: '',
   });
 
   // 상태 업데이트 함수
@@ -163,8 +164,9 @@ const EditDiary = () => {
     setImage({
       imageId: 0,
       imageURL: '',
-      name: '',
-      size: '',
+      imageName: '',
+      imageSize: 0,
+      imageType: '',
     });
   };
 
@@ -181,7 +183,7 @@ const EditDiary = () => {
     };
 
     if (!image.imageId && image.imageURL) {
-      postImage(image.imageURL, {
+      postImage(image, {
         onSuccess: res => {
           const request = {
             content: quillContent,
@@ -244,8 +246,9 @@ const EditDiary = () => {
         setImage({
           imageId: detail.image[0].imageId,
           imageURL: detail.image[0].imageURL,
-          name: '',
-          size: '',
+          imageName: detail.image[0].imageName,
+          imageSize: detail.image[0].imageSize,
+          imageType: '',
         });
       }
     }
@@ -351,8 +354,8 @@ const EditDiary = () => {
                 <S.Image>
                   <img src={image.imageURL} alt="image file" />
                 </S.Image>
-                <S.ImageName>{image.name}</S.ImageName>
-                <S.ImageData>{image.size} KB</S.ImageData>
+                <S.ImageName>{image.imageName}</S.ImageName>
+                <S.ImageData>{image.imageSize} KB</S.ImageData>
                 <button onClick={removeImage}>
                   <S.ImageDelete>
                     <Close width={16} height={16} />

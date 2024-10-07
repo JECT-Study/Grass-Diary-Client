@@ -33,10 +33,15 @@ export const END_POINT = {
     `/shared/diaries/latest?cursorId=${cursorId}&size=12`,
   total_reward: (memberId: Id) => `/member/totalReward/${memberId}`,
   total_grass: (memberId: Id) => `/grass/${memberId}`,
+  reward_history: (memberId: Id) => `reward/history/${memberId}`,
   grass: (memberId: Id) => `/grass/main-page/${memberId}`,
   image: '/image/diary',
   comment: (id: Id) => `/comment/${id}`,
   comment_delete: (id: Id) => `/comment/${id}/delete`,
   hashtagList: (memberId: Id, hashtagId: string | null) =>
     `search/tagId/${memberId}?tagId=${hashtagId}`,
+  withdraw: () => `/member/withdraw`,
+  theme_color: (colorCodeId: number) => `/store/color/${colorCodeId}`,
+  theme_setting: (colorCodeId: number) => `member/colors/${colorCodeId}/equip`,
+  theme_list: (memberId: Id) => `member/${memberId}/colors`,
 } as const;

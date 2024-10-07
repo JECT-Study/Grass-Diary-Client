@@ -3,10 +3,12 @@ import API from '@services/index';
 import { END_POINT } from '@constants/api';
 import { useSnackBar } from '@state/toast/useSnackBar';
 import { SNACKBAR } from '@constants/message';
+import { AxiosError } from 'axios';
 
 export const useCreateDiary = (memberId: number) => {
   const { snackBar } = useSnackBar();
   const queryClient = useQueryClient();
+
   return useMutation({
     mutationFn: (request: DiaryRequest) =>
       API.post(END_POINT.diary(memberId), request),

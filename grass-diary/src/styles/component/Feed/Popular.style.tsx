@@ -88,7 +88,7 @@ export const RankSection = styled.section`
   gap: var(--gap-2xl, 2rem);
   align-self: stretch;
   overflow: hidden;
-  background: ${semantic.light.fill.transparent.alternative};
+  background: ${semantic.light.fill.transparent.assistive};
 
   @media screen and (max-width: 60em) {
     min-width: 20em;

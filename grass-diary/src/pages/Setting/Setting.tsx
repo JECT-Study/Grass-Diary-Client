@@ -9,18 +9,40 @@ import * as S from '../../styles/Setting/SettingStyles';
 import API from '@services/index';
 import { Profile } from '@components/index';
 import { END_POINT } from '@constants/api';
-import { CONSOLE_ERROR, SETTING_MESSAGES } from '@constants/message';
+import { MODAL, SETTING_MESSAGES } from '@constants/message';
 import { useProfile } from '@state/profile/useProfile';
 import { useProfileActions } from '@state/profile/ProfileStore';
+import { Link } from 'react-router-dom';
+import { useModal } from '@state/modal/useModal';
+import { INTERACTION } from '@styles/interaction';
+import { semantic } from '@styles/semantic';
+import { AxiosError } from 'axios';
 
 const Setting = () => {
   const queryClient: QueryClient = useQueryClient();
-  const { nickname, profileIntro }: omitProfileImageURL = useProfile();
+  const { nickname, profileIntro, email }: omitProfileImageURL = useProfile();
   const { setNickName, setProfileIntro } = useProfileActions();
+  const { modal } = useModal();
 
   const [isFocused, setIsFocused] = useState(false);
   const [isEditingNickname, setIsEditingNickname] = useState(false);
   const [editNickname, setEditNickname] = useState(nickname);
+
+  const handleModal = (content: string) => {
+    const setting = {
+      title: MODAL.main.modal.preparation_notice,
+      content: content,
+    };
+
+    const button1 = {
+      active: true,
+      text: MODAL.confirm,
+      color: semantic.light.accent.solid.hero,
+      interaction: INTERACTION.accent.subtle(),
+    };
+
+    modal(setting, button1);
+  };
 
   const handleChangeNickname = (event: React.ChangeEvent<HTMLInputElement>) => {
     setEditNickname(event.target.value);
@@ -35,7 +57,7 @@ const Setting = () => {
 
   const updateProfile = useMutation<
     omitProfileImageURL,
-    Error,
+    AxiosError<ApiErrorResponse>,
     omitProfileImageURL
   >({
     mutationFn: profileInfo =>
@@ -45,7 +67,6 @@ const Setting = () => {
       setIsEditingNickname(false);
       setNickName(editNickname);
     },
-    onError: error => console.error(CONSOLE_ERROR.member.patch + error),
   });
 
   return (
@@ -61,10 +82,22 @@ const Setting = () => {
                     <S.UserNameText>{nickname}</S.UserNameText>
                   </S.AvatarImageBox>
                   <S.ProfileButtonBox>
-                    <S.ImageUploadButton>
+                    <S.ImageUploadButton
+                      onClick={() =>
+                        handleModal(
+                          MODAL.main.modal.modal_notice('프로필 변경 기능'),
+                        )
+                      }
+                    >
                       {SETTING_MESSAGES.button.image('업로드')}
                     </S.ImageUploadButton>
-                    <S.ImageDeleteButton>
+                    <S.ImageDeleteButton
+                      onClick={() =>
+                        handleModal(
+                          MODAL.main.modal.modal_notice('프로필 변경 기능'),
+                        )
+                      }
+                    >
                       {SETTING_MESSAGES.button.image('삭제')}
                     </S.ImageDeleteButton>
                   </S.ProfileButtonBox>
@@ -88,12 +121,25 @@ const Setting = () => {
             <S.IntroductionCountText>
               {profileIntro.length}/150자
             </S.IntroductionCountText>
+            <S.IntroductionButtonBox>
+              <S.ApplyButton
+                onClick={() =>
+                  updateProfile.mutate({
+                    profileIntro: profileIntro,
+                    nickname,
+                    email,
+                  })
+                }
+              >
+                {SETTING_MESSAGES.button.save}
+              </S.ApplyButton>
+            </S.IntroductionButtonBox>
           </S.ProfileArticle>
         </S.ProfileSection>
         <S.DetailSettingSection>
           <S.DetailSettingArticle>
             <S.SettingBox>
-              <S.SettingLeftBox>
+              <S.SettingLeftBox $variant="nickname">
                 <S.SettingLabel>
                   {SETTING_MESSAGES.label.nickname}
                 </S.SettingLabel>
@@ -114,6 +160,7 @@ const Setting = () => {
                     updateProfile.mutate({
                       nickname: editNickname,
                       profileIntro,
+                      email,
                     })
                   }
                 >
@@ -134,7 +181,7 @@ const Setting = () => {
             <S.SettingBox>
               <S.SettingLeftBox $variant="email">
                 <S.SettingLabel>{SETTING_MESSAGES.label.email}</S.SettingLabel>
-                <S.SettingText>username@gmail.com</S.SettingText>
+                <S.SettingText>{email}</S.SettingText>
               </S.SettingLeftBox>
             </S.SettingBox>
             <S.SettingMessage>
@@ -144,11 +191,23 @@ const Setting = () => {
           {/* <S.DividerLine />
           <Temporary /> */}
           <S.DividerLine />
+          <S.DetailSettingArticle>
+            <S.NavigateBox>
+              <S.SettingLabel>{SETTING_MESSAGES.label.theme}</S.SettingLabel>
+              <Link to="/themesetting">
+                <S.WithdrawButton src="/assets/icons/icon-btn-chevron-right.svg" />
+              </Link>
+            </S.NavigateBox>
+            <S.SettingMessage>
+              {SETTING_MESSAGES.message.theme}
+            </S.SettingMessage>
+          </S.DetailSettingArticle>
+          <S.DividerLine />
           <S.ThemeContainer>
             <S.ThemeMessageBox>
-              <S.SettingLabel>{SETTING_MESSAGES.label.theme}</S.SettingLabel>
+              <S.SettingLabel>{SETTING_MESSAGES.label.mode}</S.SettingLabel>
               <S.SettingMessage>
-                {SETTING_MESSAGES.message.theme}
+                {SETTING_MESSAGES.message.mode}
               </S.SettingMessage>
             </S.ThemeMessageBox>
             <S.ThemeSelectBox>
@@ -158,32 +217,13 @@ const Setting = () => {
           </S.ThemeContainer>
           <S.DividerLine />
           <S.WithdrawBoxArticle>
-            <S.WithdrawBox>
+            <S.NavigateBox>
               <S.SettingLabel>{SETTING_MESSAGES.label.withdraw}</S.SettingLabel>
-              <S.WithdrawButton>
-                {SETTING_MESSAGES.button.withdraw}
-              </S.WithdrawButton>
-            </S.WithdrawBox>
-            <S.SettingMessage>
-              {SETTING_MESSAGES.message.withdraw}
-            </S.SettingMessage>
+              <a href="/withdraw">
+                <S.WithdrawButton src="/assets/icons/icon-btn-chevron-right.svg" />
+              </a>
+            </S.NavigateBox>
           </S.WithdrawBoxArticle>
-          <S.BottomSection>
-            <S.ApplyButton
-              onClick={() =>
-                updateProfile.mutate({
-                  nickname: nickname,
-                  profileIntro: profileIntro,
-                })
-              }
-            >
-              {SETTING_MESSAGES.button.apply}
-            </S.ApplyButton>
-            <S.NavigateButton>
-              {SETTING_MESSAGES.button.navigate}
-              <img src="/assets/icons/button-outlined-chevron-right.svg" />
-            </S.NavigateButton>
-          </S.BottomSection>
         </S.DetailSettingSection>
       </S.ContentContainer>
     </S.SettingContainer>

@@ -13,15 +13,7 @@ const CommentDisplay = ({ comment, parentId }: CommentDisplayProps) => {
   const memberId = useUser();
   const { setReplyId } = useCommentActions();
   const { date } = useTodayDate();
-  const setting = useRef<HTMLDivElement>(null);
   const [isToday, setIsToday] = useState(false);
-
-  const reply = (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
-    if (setting.current) {
-      if (setting.current.contains(e.target as HTMLElement)) return;
-    }
-    setReplyId(parentId);
-  };
 
   useEffect(() => {
     if (date && comment.createdDate) {
@@ -43,7 +35,7 @@ const CommentDisplay = ({ comment, parentId }: CommentDisplayProps) => {
       </S.WriterBox>
     </S.CommentItem>
   ) : (
-    <S.CommentItem onClick={reply} $isMe={memberId === comment.memberId}>
+    <S.CommentItem $isMe={memberId === comment.memberId}>
       <S.TopBox>
         <S.WriterBox>
           {comment.depth ? <ReplyIcon /> : null}
@@ -59,16 +51,19 @@ const CommentDisplay = ({ comment, parentId }: CommentDisplayProps) => {
               : ''}
           </S.TimeText>
         </S.WriterBox>
-        <div ref={setting}>
-          <CommentSetting
-            commentId={comment.commentId}
-            writerId={comment.memberId}
-          />
-        </div>
+        <CommentSetting
+          commentId={comment.commentId}
+          writerId={comment.memberId}
+        />
       </S.TopBox>
-      <S.ContentBox $isReply={comment.depth ? true : false}>
-        {comment.content}
-      </S.ContentBox>
+      <S.BottomBox>
+        <S.ContentText $isReply={comment.depth ? true : false}>
+          {comment.content}
+        </S.ContentText>
+        <S.ReplyButton onClick={() => setReplyId(parentId)}>
+          댓글 달기
+        </S.ReplyButton>
+      </S.BottomBox>
     </S.CommentItem>
   );
 };

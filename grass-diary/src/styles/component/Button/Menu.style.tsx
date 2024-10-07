@@ -4,6 +4,7 @@ import { TYPO } from '@styles/typo';
 import { INTERACTION } from '@styles/interaction';
 
 export const MenuBox = styled.div`
+  cursor: pointer;
   width: 10rem;
   display: flex;
   padding: var(--gap-md, 1rem) var(--gap-lg, 1.25rem);

@@ -36,7 +36,6 @@ export const Card = styled.div`
   flex-direction: column;
   align-items: flex-start;
   gap: var(--gap-md, 1rem);
-  flex: 1 0 0;
 
   border-radius: var(--radius-md, 1rem);
   border: var(--stroke-thin, 0.0625rem) solid

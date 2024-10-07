@@ -2,6 +2,7 @@ import API from '@services/index';
 import { END_POINT } from '@constants/api';
 import { useInfiniteQuery } from '@tanstack/react-query';
 import { AxiosError } from 'axios';
+import { useError } from '@hooks/useError';
 
 interface ILatestDiaryResponse {
   pageParams: number[];
@@ -13,9 +14,10 @@ const fetchLatestDiary = (cursorId: number) => {
 };
 
 export const useLatestDiaries = () => {
-  const { data, fetchNextPage } = useInfiniteQuery<
+  const { renderErrorPage } = useError();
+  const { data, fetchNextPage, isError, error } = useInfiniteQuery<
     Feed[],
-    AxiosError,
+    AxiosError<ApiErrorResponse>,
     ILatestDiaryResponse,
     [string],
     number
@@ -33,6 +35,11 @@ export const useLatestDiaries = () => {
   });
 
   const latest: Feed[][] = data?.pages || [];
+
+  if (isError) {
+    console.error(error);
+    renderErrorPage(error);
+  }
 
   return { latest, fetchNextPage };
 };

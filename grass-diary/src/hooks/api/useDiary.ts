@@ -2,6 +2,8 @@ import { useQuery } from '@tanstack/react-query';
 import API from '@services/index';
 import { END_POINT } from '@constants/api';
 import { CONSOLE_ERROR } from '@constants/message';
+import { AxiosError } from 'axios';
+import { useError } from '@hooks/useError';
 
 interface IUseDiaryProps {
   memberId: Id;
@@ -10,6 +12,7 @@ interface IUseDiaryProps {
 }
 
 const useDiary = ({ memberId, currentPage, sortOrder }: IUseDiaryProps) => {
+  const { renderErrorPage } = useError();
   const queryKey = ['diaryList', { memberId, currentPage, sortOrder }];
 
   const queryFn = async (): Promise<IDiaryResponse> => {
@@ -21,20 +24,28 @@ const useDiary = ({ memberId, currentPage, sortOrder }: IUseDiaryProps) => {
     return response.data;
   };
 
-  const { data: diary } = useQuery<
+  const {
+    data: diary,
+    isError,
+    error,
+  } = useQuery<
     IDiaryResponse,
-    Error,
+    AxiosError<ApiErrorResponse>,
     IDiaryResponse,
     (string | IUseDiaryProps)[]
   >({
     queryKey,
     queryFn,
     enabled: !!memberId,
-    onError: error => console.error(CONSOLE_ERROR.diary.get + error),
   });
 
   const diaryList: IDiary[] = diary?.content || [];
   const pageSize: number = diary?.totalPages || 0;
+
+  if (isError) {
+    console.error(CONSOLE_ERROR.diary.get + error);
+    renderErrorPage(error);
+  }
 
   return { diaryList, pageSize };
 };

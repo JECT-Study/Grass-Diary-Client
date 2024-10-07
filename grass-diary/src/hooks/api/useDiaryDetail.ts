@@ -5,7 +5,7 @@ import { useQuery } from '@tanstack/react-query';
 import { AxiosError } from 'axios';
 
 import { useWriterProfile } from './useWriterProfile';
-import { useNavigate } from 'react-router-dom';
+import { useError } from '@hooks/useError';
 
 const fetchDiaryDetails = async (id: Id): Promise<IDiaryDetail> => {
   const res = await API.get(END_POINT.diary(id));
@@ -19,7 +19,12 @@ export const useDiaryDetail = (diaryId: Id) => {
     isLoading,
     isError,
     error,
-  } = useQuery<IDiaryDetail, AxiosError, IDiaryDetail, [string, Id]>({
+  } = useQuery<
+    IDiaryDetail,
+    AxiosError<ApiErrorResponse>,
+    IDiaryDetail,
+    [string, Id]
+  >({
     queryKey: ['get-diaryDetail', diaryId],
     queryFn: () => fetchDiaryDetails(diaryId),
     retry: 1,
@@ -27,11 +32,11 @@ export const useDiaryDetail = (diaryId: Id) => {
 
   const writerId = detail?.memberId;
   const { data: writer } = useWriterProfile(writerId!);
-  const navigate = useNavigate();
+  const { renderErrorPage } = useError();
 
   if (isError) {
-    console.error(error.message);
-    navigate('/non-existent-page');
+    console.error(error);
+    renderErrorPage(error);
   }
 
   return { detail, writer, isLoading };

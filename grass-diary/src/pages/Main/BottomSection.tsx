@@ -8,24 +8,11 @@ import { MAIN_MESSAGES, MODAL } from '@constants/message';
 import { ReactComponent as Avatar } from '@svg/avatarBg.svg';
 import { ReactComponent as Arrow } from '@svg/chevron_right.svg';
 import { ReactComponent as ArrowBlack } from '@svg/chevron_right_black.svg';
+import { Link } from 'react-router-dom';
 
 const BottomSection = () => {
   const { reward } = useReward();
   const { modal } = useModal();
-
-  const themeModal = () => {
-    const setting = {
-      title: MODAL.main.modal.preparation_notice,
-      content: MODAL.main.modal.modal_notice('테마 상점은'),
-    };
-
-    const button1 = {
-      active: true,
-      text: MODAL.confirm,
-      color: semantic.light.accent.solid.alternative,
-    };
-    modal(setting, button1);
-  };
 
   const reviewModal = () => {
     const setting = {
@@ -40,6 +27,8 @@ const BottomSection = () => {
     };
     modal(setting, button1);
   };
+
+  const handleClick = () => window.scrollTo(0, 0);
 
   return (
     <>
@@ -58,16 +47,18 @@ const BottomSection = () => {
                   <AnimateReward n={reward?.rewardPoint ?? 0} />
                 </S.RewardPointBox>
               </S.RewardContainer>
-              <S.ThemeMarketBtn onClick={themeModal}>
-                <S.ThemeMarketText>
-                  {MAIN_MESSAGES.bottom_section.theme_store}
-                </S.ThemeMarketText>
-                <Arrow
-                  width={18}
-                  height={18}
-                  fill={semantic.light.accent.solid.hero}
-                ></Arrow>
-              </S.ThemeMarketBtn>
+              <Link to="/themepage">
+                <S.ThemeMarketBtn onClick={handleClick}>
+                  <S.ThemeMarketText>
+                    {MAIN_MESSAGES.bottom_section.theme_store}
+                  </S.ThemeMarketText>
+                  <Arrow
+                    width={18}
+                    height={18}
+                    fill={semantic.light.accent.solid.hero}
+                  />
+                </S.ThemeMarketBtn>
+              </Link>
             </S.Wrap>
           </S.Card>
           <S.Card>

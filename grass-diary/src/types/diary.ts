@@ -72,11 +72,12 @@ interface IDiaryInfo {
 interface DiaryImage {
   imageId: number;
   imageURL: string;
+  imageName: string;
+  imageSize: number;
 }
 
 interface ImageInfo extends DiaryImage {
-  name: string;
-  size: string;
+  imageType: string;
 }
 
 // DiaryDetail Type

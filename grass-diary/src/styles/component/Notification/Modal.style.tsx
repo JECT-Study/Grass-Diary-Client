@@ -49,8 +49,6 @@ export const Title = styled.h2`
 `;
 
 export const CloseIcon = styled(Close)`
-  width: 20px;
-  height: 20px;
   cursor: pointer;
 `;
 

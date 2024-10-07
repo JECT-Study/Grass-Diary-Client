@@ -2,6 +2,8 @@ import API from '@services/index';
 import { END_POINT } from '@constants/api';
 import { useMutation } from '@tanstack/react-query';
 import { CONSOLE_ERROR } from '@constants/message';
+import { AxiosError } from 'axios';
+import { useError } from '@hooks/useError';
 
 interface IApiProps {
   diaryId: Id;
@@ -21,17 +23,11 @@ export const useCountLike = ({ diaryId, memberId }: IApiProps) => {
     mutationFn: () => {
       return postLikeApi({ diaryId, memberId });
     },
-    onError: error => {
-      console.error(CONSOLE_ERROR.like.post + error);
-    },
   });
 
   const { mutate: deleteLike, isSuccess: deleteSuccess } = useMutation({
     mutationFn: () => {
       return deleteLikeApi({ diaryId, memberId });
-    },
-    onError: error => {
-      console.error(CONSOLE_ERROR.like.delete + error);
     },
   });
 

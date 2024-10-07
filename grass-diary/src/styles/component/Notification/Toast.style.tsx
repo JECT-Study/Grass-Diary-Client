@@ -14,11 +14,13 @@ export const toastFadeIn = keyframes`
 
 100% {
   opacity: 0;
-  top: 90%;
+  top: 100%;
 }
 `;
 
 export const ToastBox = styled.div<{ $active: boolean; $isRed: boolean }>`
+  white-space: nowrap;
+  display: ${props => (props.$active ? 'block' : 'none')};
   position: fixed;
   top: 100%;
   left: 50%;
@@ -27,7 +29,7 @@ export const ToastBox = styled.div<{ $active: boolean; $isRed: boolean }>`
   padding: var(--gap-sm, 0.75rem) var(--gap-xl, 1.5rem);
   gap: var(--gap-2xs, 0.5rem);
 
-  border-radius: var(--radius-round, 6rem);
+  border-radius: var(--radius-md, 1rem);
   background: ${props =>
     props.$isRed
       ? semantic.light.feedback.solid.negative
@@ -39,6 +41,10 @@ export const ToastBox = styled.div<{ $active: boolean; $isRed: boolean }>`
   ${TYPO.label2}
   color: ${semantic.light.inverse.solid.hero};
   text-align: center;
-  animation: ${props => props.$active && toastFadeIn} 4s 1s ease;
+  animation: ${props => props.$active && toastFadeIn} 3s 0.5s ease;
   transition: 1s;
+
+  @media screen and (max-width: 60em) {
+    ${TYPO.body1}
+  }
 `;

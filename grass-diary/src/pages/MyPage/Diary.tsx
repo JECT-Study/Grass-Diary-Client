@@ -15,6 +15,8 @@ import { ReactComponent as CommentIcon } from '@svg/comment.svg';
 import { MoodProfile, Profile, Divider } from '@components/index';
 import Setting from '@pages/DiaryDetail/Setting';
 import { END_POINT } from '@constants/api';
+import { AxiosError } from 'axios';
+import { useError } from '@hooks/useError';
 
 interface IPagination {
   pageSize: number;
@@ -132,6 +134,7 @@ const Diary = ({
   selectedDiary,
 }: IDiaryProps) => {
   const navigate = useNavigate();
+  const { renderErrorPage } = useError();
   const [searchParams] = useSearchParams();
   const [hashtagId, setHashtagId] = useState<string | null>(null);
   const [isSelected, setIsSelected] = useState('');
@@ -179,9 +182,13 @@ const Diary = ({
     enabled: !!memberId,
   });
 
-  const { data: selectedTag } = useQuery<
+  const {
+    data: selectedTag,
+    isError,
+    error,
+  } = useQuery<
     IDiary,
-    Error,
+    AxiosError<ApiErrorResponse>,
     IDiary,
     (string | number | string | null)[]
   >({
@@ -192,6 +199,8 @@ const Diary = ({
       ),
     enabled: !!hashtagId && !!memberId,
   });
+
+  if (isError) renderErrorPage(error);
 
   useEffect(() => {
     if (selectedTag) setSelectedDiary(selectedTag);

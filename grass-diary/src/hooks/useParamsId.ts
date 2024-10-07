@@ -1,3 +1,4 @@
+import { ERROR } from '@constants/message';
 import { useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
@@ -8,7 +9,7 @@ export const useParamsId = () => {
 
   useEffect(() => {
     if (Number.isNaN(diaryId_num) || diaryId_num === 0) {
-      navigate('/non-existent-page');
+      navigate('/errorpage', { state: ERROR.diary_not_found_err });
     }
   }, [diaryId_num]);
 

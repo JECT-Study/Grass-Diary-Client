@@ -68,7 +68,7 @@ const Setting = ({ diaryId, createdDate }: SettingProps) => {
       if (
         // 당일 : 일기 수정 가능
         +createdDate.slice(0, 2) === date.year % 100 &&
-        +createdDate.slice(5, 6) === date.month &&
+        +createdDate.slice(4, 6) === date.month &&
         +createdDate.slice(8, 10) === date.date
       ) {
         setCanEdit(true);

@@ -283,7 +283,13 @@ const SettingLeftBox = styled.div<{ $variant?: string }>`
   ${({ $variant }) => {
     if ($variant === 'email') {
       return css`
-        gap: 4.325rem;
+        gap: 3.325rem;
+      `;
+    }
+
+    if ($variant === 'nickname') {
+      return css`
+        gap: 5.725rem;
       `;
     }
   }}
@@ -295,6 +301,12 @@ const SettingLeftBox = styled.div<{ $variant?: string }>`
       if ($variant === 'email') {
         return css`
           gap: 2rem;
+        `;
+      }
+
+      if ($variant === 'nickname') {
+        return css`
+          gap: 4.4rem;
         `;
       }
     }}
@@ -314,8 +326,6 @@ const SettingLeftBox = styled.div<{ $variant?: string }>`
 `;
 
 const SettingLabel = styled.label`
-  width: 7rem;
-
   ${TYPO.title1}
   color: ${semantic.light.object.solid.normal};
 `;
@@ -467,48 +477,40 @@ const WithdrawBoxArticle = styled.article`
   align-self: stretch;
 
   gap: 1.25rem;
+
+  padding-top: 1rem;
+  padding-bottom: 3rem;
 `;
 
-const WithdrawBox = styled.div`
+const NavigateBox = styled.div`
   display: flex;
   align-items: center;
-
-  gap: 4.5rem;
-`;
-
-const WithdrawButton = styled.button`
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  align-self: stretch;
-
-  height: 2.0625rem;
 
   gap: 0.5rem;
-  padding: 0.625rem 1rem;
-
-  border-radius: 0.5rem;
-
-  color: ${semantic.light.base.solid.white};
-  background: ${semantic.light.inverse.solid.negative};
-
-  ${INTERACTION.default.subtle(semantic.light.inverse.solid.negative)}
+  cursor: pointer;
 `;
 
-const BottomSection = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  align-items: flex-end;
-  align-self: stretch;
+const WithdrawButton = styled.img`
+  width: 1.25rem;
+  height: 1.25rem;
+`;
 
-  gap: 3rem;
+export const IntroductionButtonBox = styled.div`
+  display: flex;
+  justify-content: flex-end;
+
+  width: 100%;
+
+  padding-top: 0.5rem;
+  padding-right: 1.25rem;
 `;
 
 const ApplyButton = styled.button`
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
   align-items: center;
+
+  width: 4.3125rem;
 
   gap: 0.5rem;
   padding: 0.625rem 1rem;
@@ -518,22 +520,6 @@ const ApplyButton = styled.button`
   background: ${semantic.light.accent.solid.normal};
 
   ${INTERACTION.default.normal(semantic.light.accent.solid.normal)}
-`;
-
-const NavigateButton = styled.button`
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-
-  gap: 0.5rem;
-  padding: 0.625rem 1rem;
-
-  border-radius: 0.5rem;
-  border: 1px solid ${semantic.light.accent.solid.normal};
-  color: ${semantic.light.accent.solid.hero};
-  background: ${semantic.light.accent.transparent.normal};
-
-  ${INTERACTION.accent.subtle()}
 `;
 
 export {
@@ -576,9 +562,7 @@ export {
   ThemeSelectBox,
   ThemeImg,
   WithdrawBoxArticle,
-  WithdrawBox,
+  NavigateBox,
   WithdrawButton,
-  BottomSection,
   ApplyButton,
-  NavigateButton,
 };

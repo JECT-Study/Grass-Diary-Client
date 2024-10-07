@@ -18,3 +18,4 @@ export { default as Modal } from './Notification/Modal';
 export { default as CustomButton } from './Notification/CustomButton';
 export { default as Callout } from './Notification/Callout';
 export { default as Toast } from './Notification/Toast';
+export { default as SnackBar } from './Notification/SnackBar';

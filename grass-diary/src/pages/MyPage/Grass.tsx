@@ -8,6 +8,8 @@ import API from '@services/index';
 import { END_POINT } from '@constants/api';
 import { useUser } from '@state/user/useUser';
 import { semantic } from '@styles/semantic';
+import { AxiosError } from 'axios';
+import { useError } from '@hooks/useError';
 
 type TCreateGrass = () => { year: number; grass: (Date | null)[][] };
 
@@ -40,6 +42,7 @@ const Grass = ({ setSelectedDiary }: IGrass) => {
   const memberId = useUser();
   const grassColors = useGrass(memberId);
   const { year, grass } = createGrass();
+  const { renderErrorPage } = useError();
 
   const [selectedGrass, setSelectedGrass] = useState<string | null>(null);
   const [hoveredGrass, setHoveredGrass] = useState<string | null>(null);
@@ -64,9 +67,13 @@ const Grass = ({ setSelectedDiary }: IGrass) => {
     ? `${year}-${selectedGrass.split('/').join('-')}`
     : null;
 
-  const { data: selectedDiary } = useQuery<
+  const {
+    data: selectedDiary,
+    isError,
+    error,
+  } = useQuery<
     IDiary,
-    Error,
+    AxiosError<ApiErrorResponse>,
     IDiary,
     (string | number | string | null)[]
   >({
@@ -77,6 +84,8 @@ const Grass = ({ setSelectedDiary }: IGrass) => {
       ),
     enabled: !!selectedGrass && !!memberId,
   });
+
+  if (isError) renderErrorPage(error);
 
   useEffect(() => {
     if (selectedDiary) setSelectedDiary([selectedDiary]);
