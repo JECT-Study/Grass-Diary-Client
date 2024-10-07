@@ -356,7 +356,7 @@ const ThemeStorePage = () => {
 
         <S.BuyThemeBox>
           <S.BuyThemeBtn onClick={handlePurchase}>
-            <S.BuyThemeBtnText>구입하기</S.BuyThemeBtnText>
+            <S.BuyThemeBtnText>구입하기-490포인트</S.BuyThemeBtnText>
           </S.BuyThemeBtn>
         </S.BuyThemeBox>
       </S.Layout>

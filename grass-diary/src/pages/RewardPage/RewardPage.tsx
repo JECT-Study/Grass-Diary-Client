@@ -2,6 +2,7 @@ import * as S from '@styles/RewardPage/RewardPage.style';
 import { semantic } from '@styles/semantic';
 import { ReactComponent as Avatar } from '@svg/avatarBg.svg';
 import { ReactComponent as Arrow } from '@svg/chevron_right.svg';
+import pot from '@image/pot.png';
 import { useReward } from '@hooks/api/useReward';
 import { useGrassRecord } from '@hooks/api/useGrassRecord';
 import { useRewardHistory } from '@hooks/api/useRewardHistory';
@@ -44,7 +45,7 @@ const RewardPage = () => {
           <S.RewardSection>
             <S.RewardContainer>
               <S.GrassCountBox>
-                <img src="/assets/image/pot.png" alt="image" />
+                <img src={pot} alt="image" />
                 <S.CountText>{grassQuery?.totalCount}</S.CountText>
                 <S.CountCaptionText>내가 심은 잔디</S.CountCaptionText>
               </S.GrassCountBox>
