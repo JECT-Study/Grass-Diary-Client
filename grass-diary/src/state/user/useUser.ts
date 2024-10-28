@@ -33,40 +33,40 @@ export const useUser = () => {
     queryKey: ['memberId'],
     queryFn: fetchAxios,
     enabled: !!isAuthenticated,
-    retry: 0,
-    refetchInterval: 5000,
-    refetchIntervalInBackground: true,
+    retry: 1,
   });
 
-  if (isError) {
-    const manualLogout = localStorage.getItem('manualLogout');
-
-    if (manualLogout === null) {
-      const setting = {
-        title: isNetworkOffline
-          ? MODAL.network_error.title
-          : MODAL.authentication_error.title,
-        content: isNetworkOffline
-          ? MODAL.network_error.content
-          : `${error.response?.data.description}\n` + '다시 로그인 해주세요',
-      };
-
-      const button1 = {
-        active: true,
-        text: MODAL.confirm,
-        color: semantic.light.accent.solid.hero,
-        interaction: INTERACTION.accent.subtle(),
-        clickHandler: () => (window.location.href = '/'),
-      };
-
-      modal(setting, button1);
-    }
-  }
-
   useEffect(() => {
+    if (isSuccess) setMemberId(data);
     if (!isAuthenticated) setMemberId(0);
-    else if (isError) setMemberId(0);
-    else if (isSuccess) setMemberId(data);
+    if (isError) {
+      const logout = localStorage.getItem('logout');
+      if (logout === null) {
+        const content = isNetworkOffline
+          ? MODAL.network_error.content
+          : error.response
+          ? error.response?.data.description + '\n다시 로그인 해주세요'
+          : '다시 로그인 해주세요';
+
+        const setting = {
+          title: isNetworkOffline
+            ? MODAL.network_error.title
+            : MODAL.authentication_error.title,
+          content: content,
+        };
+
+        const button1 = {
+          active: true,
+          text: MODAL.confirm,
+          color: semantic.light.accent.solid.hero,
+          interaction: INTERACTION.accent.subtle(),
+          clickHandler: () => (window.location.href = '/'),
+        };
+
+        modal(setting, button1);
+        setMemberId(0);
+      }
+    }
   }, [isAuthenticated, isError, isSuccess]);
 
   return memberId;

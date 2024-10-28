@@ -7,23 +7,58 @@ import { useTodayDate } from '@hooks/api/useTodayDate';
 import more from '@svg/more_horiz.svg';
 import editIcon from '@svg/mode_edit.svg';
 import deleteIcon from '@svg/delete_forever.svg';
+import lockOpen from '@svg/lock_open_black.svg';
+import lock from '@svg/lock_black.svg';
+
 import { Menus, Menu } from '@components/index';
 import { useModal } from '@state/modal/useModal';
 import { MODAL } from '@constants/message';
 import { INTERACTION } from '@styles/interaction';
 import { useDeleteDiaryDetail } from '@hooks/api/useDeleteDiaryDetail';
+import { usePatchVisibility } from '@hooks/api/usePatchVisibility';
 
 type SettingProps = {
   diaryId: Id;
   createdDate: string;
+  detail?: IDiaryDetail;
 };
 
-const Setting = ({ diaryId, createdDate }: SettingProps) => {
+const Setting = ({ diaryId, createdDate, detail }: SettingProps) => {
   const navigate = useNavigate();
   const { modal } = useModal();
   const { date } = useTodayDate();
   const [canEdit, setCanEdit] = useState(false);
-  const { mutate } = useDeleteDiaryDetail(diaryId);
+  const { mutate: deleteDiary } = useDeleteDiaryDetail(diaryId);
+  const { mutate: patchVisibility } = usePatchVisibility(
+    diaryId,
+    detail?.isPrivate,
+  );
+
+  const editVisibility = () => {
+    if (detail) {
+      const setting = {
+        title: detail.isPrivate ? '일기 공개하기' : '일기 비공개하기',
+        content: detail.isPrivate
+          ? MODAL.visibility.public
+          : MODAL.visibility.private,
+      };
+
+      const button1 = {
+        active: true,
+        text: MODAL.cancel,
+      };
+
+      const button2 = {
+        active: true,
+        text: detail.isPrivate ? '공개하기' : '비공개하기',
+        clickHandler: patchVisibility,
+        color: semantic.light.accent.solid.alternative,
+        interaction: INTERACTION.accent.subtle(),
+      };
+
+      modal(setting, button1, button2);
+    }
+  };
 
   const editModal = () => {
     const setting = {
@@ -56,7 +91,7 @@ const Setting = ({ diaryId, createdDate }: SettingProps) => {
     const button2 = {
       active: true,
       text: MODAL.delete_diary.button,
-      clickHandler: mutate,
+      clickHandler: deleteDiary,
       color: semantic.light.feedback.solid.negative,
     };
 
@@ -81,6 +116,13 @@ const Setting = ({ diaryId, createdDate }: SettingProps) => {
 
   return (
     <Menus icon={more}>
+      {detail && (
+        <Menu
+          onClick={editVisibility}
+          text={detail.isPrivate ? '공개하기' : '비공개하기'}
+          svg={detail.isPrivate ? lockOpen : lock}
+        />
+      )}
       <Menu onClick={editModal} text={'일기 수정'} svg={editIcon} />
       <Menu
         onClick={deleteModal}

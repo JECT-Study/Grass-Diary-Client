@@ -44,4 +44,5 @@ export const END_POINT = {
   theme_color: (colorCodeId: number) => `/store/color/${colorCodeId}`,
   theme_setting: (colorCodeId: number) => `member/colors/${colorCodeId}/equip`,
   theme_list: (memberId: Id) => `member/${memberId}/colors`,
+  visibility: (diaryId: Id) => `diary/${diaryId}/visibility`,
 } as const;

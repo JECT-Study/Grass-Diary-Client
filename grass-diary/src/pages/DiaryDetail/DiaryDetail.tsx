@@ -86,7 +86,11 @@ const DiaryDetail = () => {
 
           <S.TopBox>
             {memberId === detail?.memberId && (
-              <Setting diaryId={diaryId} createdDate={detail?.createdDate} />
+              <Setting
+                diaryId={diaryId}
+                createdDate={detail?.createdDate}
+                detail={detail}
+              />
             )}
           </S.TopBox>
         </S.TopSection>

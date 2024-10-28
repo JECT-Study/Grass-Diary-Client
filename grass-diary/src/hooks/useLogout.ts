@@ -7,12 +7,13 @@ const useLogout = () => {
   const { setIsAuthenticated } = useAuthActions();
   const setMemberId = useSetMemberId();
 
-  const clearAuth = () => {
+  const clearAuth = (isExp?: boolean) => {
     localStorage.removeItem('accessToken');
-    localStorage.setItem('manualLogout', 'true');
+    localStorage.setItem('logout', 'true');
     setIsAuthenticated(false);
     setMemberId(0);
 
+    if (isExp) return;
     navigate('/');
   };
 

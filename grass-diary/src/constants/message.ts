@@ -256,6 +256,10 @@ export const MODAL = {
     title: '네트워크 오류',
     content: '현재 접속이 원활하지 않습니다\n잠시 후 다시 시도해주세요',
   },
+  visibility: {
+    public: '일기를 공개하면,\n다른 유저들이 일기를 볼 수 있어요.',
+    private: '일기를 공개하지 않으면,\n다른 유저들은 더 이상 볼 수 없어요.',
+  },
 } as const;
 
 export const TOAST = {

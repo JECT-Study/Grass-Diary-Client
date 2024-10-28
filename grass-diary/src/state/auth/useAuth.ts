@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { useAuthActions, useIsAuthenticated, useIsLoding } from './authStore';
+import { useAuthActions, useIsAuthenticated, useIsLoading } from './authStore';
 
 interface IUseAuthReturn {
   isAuthenticated: boolean;
@@ -8,7 +8,7 @@ interface IUseAuthReturn {
 
 export const useAuth = (): IUseAuthReturn => {
   const isAuthenticated = useIsAuthenticated();
-  const isLoading = useIsLoding();
+  const isLoading = useIsLoading();
   const { handleCheckAuth } = useAuthActions();
 
   useEffect(() => {

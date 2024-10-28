@@ -44,7 +44,6 @@ export const ToastContainer = styled.div<{ $active: boolean }>`
 
   @media screen and (max-width: 60em) {
     width: 18rem;
-    display: flex;
     padding: var(--gap-xs, 0.625rem);
     flex-direction: column;
     align-items: flex-start;
