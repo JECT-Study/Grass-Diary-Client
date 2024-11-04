@@ -1,14 +1,17 @@
 <!-- <img align="left" width="170" src="https://github.com/CHZZK-Study/Grass-Diary-Client/assets/106158901/ee116ab4-1cf0-48ae-a6a7-e0c84290777a">  -->
 <div align="center">
 <!-- <h2>잔디 일기 <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Animals/Seedling.png" alt="Seedling" width="25" height="25" /></h2> -->
-<img src="https://github.com/user-attachments/assets/c1ca1787-01d8-430b-826f-46181243e708">
 
-<br>
+  <img src="https://github.com/user-attachments/assets/c1ca1787-01d8-430b-826f-46181243e708">
+
+<br />
 
 **_일상 속의 잔디, 나의 이야기를 키우다  
 일상의 작은 기록들이 잔디처럼 자라나 큰 성장으로 이어져요_**
 
 </div>
+
+
 
 <br>
 
@@ -66,11 +69,9 @@ _<h3>오늘의 이야기를 다함께 공유할 수 있어요!</h3>_
 
 ## <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/Hammer%20and%20Wrench.png" alt="Hammer and Wrench" width="35" height="35" /> 이런 기술을 사용했어요!
 
-<img src="https://img.shields.io/badge/Typescript-3178C6?style=for-the-badge&logo=Typescript&logoColor=white"/>
-<img src="https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=React&logoColor=white">
+<img src="https://img.shields.io/badge/Typescript-3178C6?style=for-the-badge&logo=Typescript&logoColor=white"/><img src="https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=React&logoColor=white">
 <br />
-<img src="https://img.shields.io/badge/TanStack Query-FF4154?style=for-the-badge&logo=reactquery&logoColor=white" />
-<img src="https://img.shields.io/badge/zustand-382923?style=for-the-badge&logo=&logoColor=white" />
+<img src="https://img.shields.io/badge/TanStack Query-FF4154?style=for-the-badge&logo=reactquery&logoColor=white" /><img src="https://img.shields.io/badge/zustand-382923?style=for-the-badge&logo=&logoColor=white" />
 <br />
 <img src="https://img.shields.io/badge/styled components-DB7093?style=for-the-badge&logo=styled-components&logoColor=white"/>
 <br />
