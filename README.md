@@ -1,16 +1,11 @@
-<!-- <img align="left" width="170" src="https://github.com/CHZZK-Study/Grass-Diary-Client/assets/106158901/ee116ab4-1cf0-48ae-a6a7-e0c84290777a">  -->
+<img src="https://github.com/user-attachments/assets/c1ca1787-01d8-430b-826f-46181243e708"><br />
+
 <div align="center">
-<!-- <h2>잔디 일기 <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Animals/Seedling.png" alt="Seedling" width="25" height="25" /></h2> -->
-
-  <img src="https://github.com/user-attachments/assets/c1ca1787-01d8-430b-826f-46181243e708">
-
-<br />
 
 **_일상 속의 잔디, 나의 이야기를 키우다  
 일상의 작은 기록들이 잔디처럼 자라나 큰 성장으로 이어져요_**
-
+  
 </div>
-
 
 
 <br>
@@ -21,17 +16,20 @@
 > 잔디일기에서 볼 수 있는 다양한 동기부여 요소와 함께 꾸준한 일기 작성을 도모하며  
 > 그 과정에서 성장하는 나 자신을 지켜볼 수 있어요 🍀
 
-_<h3> <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Activities/Teddy%20Bear.png" alt="Teddy Bear" width="25" height="25" /> 우리는 성장을 위해 기록해요</h3>_
+<br/>
+
+_<h3> <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Activities/Teddy%20Bear.png" alt="Teddy Bear" width="25" height="25" /> 성장을 위해 기록해요</h3>_
 
 변화와 성장이 함께 하는 <br />
-**나만의 스토리**를 완성할 수 있어요.
+**나만의 스토리**를 완성할 수 있어요
 
-_<h3> <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Activities/Party%20Popper.png" alt="Party Popper" width="25" height="25" /> 꾸준히 잔디를 심고 리워드를 획득할 수 있어요</h3>_
+_<h3> <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Activities/Party%20Popper.png" alt="Party Popper" width="25" height="25" /> 꾸준히 잔디를 심고 리워드를 획득해요</h3>_
 받은 리워드로 테마 상점에서 <br />
-**다양한 아이템**을 만날 수 있어요.
+**다양한 아이템**을 만날 수 있어요
 
-_<h3>오늘의 이야기를 다함께 공유할 수 있어요!</h3>_
-다양한 사람들과 생각, 일상, 고민 등 을 공유하고 소통해요.
+_<h3> <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Hand%20gestures/Eyes.png" alt="Eyes" width="25" height="25" /> 오늘의 이야기를 다함께 공유해요</h3>_
+오늘의 생각, 일상, 고민 등을 <br />
+다양한 사람들과 **소통**할 수 있어요
 
 <br>
 
@@ -45,10 +43,24 @@ _<h3>오늘의 이야기를 다함께 공유할 수 있어요!</h3>_
 
 <br>
 
-## <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Travel%20and%20places/Shooting%20Star.png" alt="Shooting Star" width="35" height="35" /> 프로젝트 주요 기능
+## <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/Hammer%20and%20Wrench.png" alt="Hammer and Wrench" width="35" height="35" /> 이런 기술을 사용했어요!
 
-> RELEASE VER.2에서는 멋지고 깔끔한 디자인으로 변경되었어요!  
-> 서비스에 필요했던 `기본적인 기능` 및 `이미지 첨부`, `임시 저장`, `해시태그 검색` 등 다양한 기능이 추가되었어요!  
+<img src="https://img.shields.io/badge/Typescript-3178C6?style=for-the-badge&logo=Typescript&logoColor=white"/><img src="https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=React&logoColor=white">
+<br />
+<img src="https://img.shields.io/badge/TanStack Query-FF4154?style=for-the-badge&logo=reactquery&logoColor=white" /><img src="https://img.shields.io/badge/zustand-382923?style=for-the-badge&logo=&logoColor=white" />
+<br />
+<img src="https://img.shields.io/badge/styled components-DB7093?style=for-the-badge&logo=styled-components&logoColor=white"/>
+<br />
+<img src="https://img.shields.io/badge/Amazon S3-569A31?style=for-the-badge&logo=amazons3&logoColor=white"><img src="https://img.shields.io/badge/Amazon CloudFront-8C4FFF?style=for-the-badge&logo=&logoColor=white"><img src="https://img.shields.io/badge/Amazon Route 53-8C4FFF?style=for-the-badge&logo=&logoColor=white">
+<br>
+<img src="https://img.shields.io/badge/GitHub Actions-2088FF?style=for-the-badge&logo=githubactions&logoColor=white">
+
+<br />
+
+## <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Activities/Sparkles.png" alt="Sparkles" width="25" height="25" /> 프로젝트 주요 기능
+
+> RELEASE VER.2에서는 멋지고 깔끔한 디자인으로 변경되었어요!     
+> 서비스에 필요했던 `기본적인 기능` 및 `이미지 첨부`, `임시 저장`, `해시태그 검색` 등 다양한 기능이 추가되었어요!     
 > 모바일 반응형이 구현되었어요!
 
 <details>
@@ -209,6 +221,8 @@ _<h3>오늘의 이야기를 다함께 공유할 수 있어요!</h3>_
 - **이번 주 인기 일기**: 공개된 일기 중 좋아요 수에 따라 인기있는 일기(최대 10개)를 슬라이드 방식으로 확인할 수 있어요.
 - **최신 순 인기 일기**: 최신 순 공개된 일기를 무한스크롤 방식으로 확인할 수 있어요.
 
+<br />
+
 ### 7. 테마상점페이지
 
 ![테마상점](https://github.com/user-attachments/assets/232d0d42-70f4-44a1-825c-803f301fc950)
@@ -257,20 +271,6 @@ _<h3>오늘의 이야기를 다함께 공유할 수 있어요!</h3>_
 ![푸터](https://github.com/user-attachments/assets/9b3ad64e-80ca-4f50-8708-2d7aef48c34a)
 
 - 잔디일기의 이용약관과 개인정보 처리방침에 대해 확인할 수 있어요.
-
-<br />
-
-## <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Objects/Hammer%20and%20Wrench.png" alt="Hammer and Wrench" width="35" height="35" /> 이런 기술을 사용했어요!
-
-<img src="https://img.shields.io/badge/Typescript-3178C6?style=for-the-badge&logo=Typescript&logoColor=white"/><img src="https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=React&logoColor=white">
-<br />
-<img src="https://img.shields.io/badge/TanStack Query-FF4154?style=for-the-badge&logo=reactquery&logoColor=white" /><img src="https://img.shields.io/badge/zustand-382923?style=for-the-badge&logo=&logoColor=white" />
-<br />
-<img src="https://img.shields.io/badge/styled components-DB7093?style=for-the-badge&logo=styled-components&logoColor=white"/>
-<br />
-<img src="https://img.shields.io/badge/Amazon S3-569A31?style=for-the-badge&logo=amazons3&logoColor=white"><img src="https://img.shields.io/badge/Amazon CloudFront-8C4FFF?style=for-the-badge&logo=&logoColor=white"><img src="https://img.shields.io/badge/Amazon Route 53-8C4FFF?style=for-the-badge&logo=&logoColor=white">
-<br>
-<img src="https://img.shields.io/badge/GitHub Actions-2088FF?style=for-the-badge&logo=githubactions&logoColor=white">
 
 <br />
 
