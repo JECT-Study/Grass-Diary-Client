@@ -302,13 +302,13 @@ _<h3> <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fl
     <td><img src="https://avatars.githubusercontent.com/u/77189999?v=4" width=100px alt="최재혁"/></td>
     <td><img src="https://avatars.githubusercontent.com/u/134907256?v=4" width=100px alt="동나"/></td>
     <td><img src="https://github.com/user-attachments/assets/62862666-73e5-45d4-87fe-06695cf6b72e" width=100px alt="유경"/></td>
-    <td><img src="https://github.com/user-attachments/assets/40d399e9-d00a-4e41-9590-3e4007522f43" width=50px alt="고수연"/></td>
+    <td><img src="https://github.com/user-attachments/assets/71f69d78-5b64-4f43-b349-e3b4064ebcb9" width=100px alt="고수연"/></td>
 </tr>
 <tr>
     <td><a href="https://github.com/jjaegii">@jjaegii</a></td>
     <td><a href="https://github.com/dongna16">@dongna16</a></td>
     <td><a href="https://www.behance.net/e6da1d63">@GwonYuGyeong</a></td>
-    <td><a href="">고수연</a></td>
+    <td><a href="https://wooded-trick-724.notion.site/SooYeon-Koh-Portfolio-34d419e5b3d2483a8fe11a906a90e66e">@SooYeon</a></td>
 </tr>
 
 </table>
