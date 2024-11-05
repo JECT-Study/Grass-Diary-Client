@@ -1,14 +1,17 @@
 <!-- <img align="left" width="170" src="https://github.com/CHZZK-Study/Grass-Diary-Client/assets/106158901/ee116ab4-1cf0-48ae-a6a7-e0c84290777a">  -->
 <div align="center">
 <!-- <h2>잔디 일기 <img src="https://raw.githubusercontent.com/Tarikul-Islam-Anik/Animated-Fluent-Emojis/master/Emojis/Animals/Seedling.png" alt="Seedling" width="25" height="25" /></h2> -->
-<img src="https://github.com/user-attachments/assets/c1ca1787-01d8-430b-826f-46181243e708">
 
-<br>
+  <img src="https://github.com/user-attachments/assets/c1ca1787-01d8-430b-826f-46181243e708">
+
+<br />
 
 **_일상 속의 잔디, 나의 이야기를 키우다  
 일상의 작은 기록들이 잔디처럼 자라나 큰 성장으로 이어져요_**
 
 </div>
+
+
 
 <br>
 
